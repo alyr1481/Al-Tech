@@ -1,3 +1,16 @@
 nav{
   background-color: #4f80bd;
 }
+
+.card{
+  color: black;
+}
+
+.title-span{
+  background-color: rgba(0,0,0, 0.75);
+  display: block;
+  width: 100%;
+  padding: 1px !important;
+  padding-left: 24px !important;
+  margin-bottom: 15px;
+}

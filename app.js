@@ -4,41 +4,27 @@ var express = require("express"),
     app = express(),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
+    expressSanitizer = require("express-sanitizer"),
     Post = require('./models/posts');
 
-// Express Settings
-app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({extended: true}));
+var blogRoutes = require('./routes/blogs'),
+    indexRoutes = require('./routes/index');
 
 // Mongoose Settings
+mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost/al-tech");
-//mongoose.Promise = global.Promise;
 
-// Root Page
-app.get("/",function(req,res){
-   res.render("index");
-});
+// Express Settings
+app.use(bodyParser.urlencoded({extended: true}));
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
+app.use(expressSanitizer());
 
-// Posts Page
-app.get("/posts",function(req,res){
-   res.render("index");
-});
 
-// New Posts Page
-app.get("/posts/new",function(req,res){
-  res.render("new");
-});
 
-app.post("/posts",function(req,res){;
-  Post.create(req.body.post,function(err,post){
-   if (err){
-     console.log(err);
-   } else {
-     res.redirect("/posts");
-   }
- });
-});
+// Routes
+app.use('/', indexRoutes);
+app.use('/blogs', blogRoutes);
 
 
 if (local){
