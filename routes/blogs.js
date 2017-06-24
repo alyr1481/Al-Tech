@@ -7,7 +7,7 @@ var Post = require("../models/posts");
 // Blog Routes
 //============
 
-// Posts Page
+// Index Page
 router.get("/",function(req,res){
   Post.find({},function(err,posts){
     if(err){
@@ -35,6 +35,7 @@ router.post("/",function(req,res){
  });
 });
 
+
 // Show Page
 router.get("/:id",function(req,res){
   Post.findById(req.params.id,function(err,foundPost){
@@ -42,6 +43,24 @@ router.get("/:id",function(req,res){
       console.log(err);
     } else{
       res.render("show",{post: foundPost});
+    }
+  });
+});
+
+// Edit Page
+router.get("/:id/edit",function(req,res){
+  Post.findById(req.params.id,function(err,foundPost){
+    res.render("edit",{post:foundPost});
+  });
+});
+
+router.put("/:id",function(req,res){
+  Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,post){
+    if (err){
+      console.log(error);
+      res.redirect("back");
+    } else{
+      res.redirect("/blogs/"+post.id);
     }
   });
 });

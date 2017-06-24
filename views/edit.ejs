@@ -1,0 +1,26 @@
+<% include partials/header %>
+
+<div class="row">
+  <form class="col s12" action="/blogs/<%= post._id %>?_method=PUT" method="post">
+    <div class="row">
+      <div class="input-field col s6">
+        <input value="<%= post.title %>" id="posttitle" type="text" class="validate" name="post[title]">
+        <label for="posttitle">First Name</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="imageurl" type="text" class="validate" value="<%= post.image %>" name="post[image]">
+        <label for="imageurl">Image URL</label>
+      </div>
+      <div class="input-field col s12">
+        <textarea id="postarea" class="materialize-textarea" name="post[content]"><%= post.content %></textarea>
+        <label for="postarea">Post Content</label>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
+</div>
+
+
+<% include partials/footer %>

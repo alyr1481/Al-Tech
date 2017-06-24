@@ -5,6 +5,7 @@ var express = require("express"),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     expressSanitizer = require("express-sanitizer"),
+    methodOverride = require('method-override'),
     Post = require('./models/posts');
 
 var blogRoutes = require('./routes/blogs'),
@@ -18,6 +19,7 @@ mongoose.connect("mongodb://localhost/al-tech");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
+app.use(methodOverride('_method'));
 app.use(expressSanitizer());
 
 
