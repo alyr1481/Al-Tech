@@ -1,25 +1,37 @@
 <% include ../partials/header %>
 
-<div class="row">
-  <form class="col s12" action="/blogs/<%= post._id %>?_method=PUT" method="post">
-    <div class="row">
-      <div class="input-field col s6">
-        <input value="<%= post.title %>" id="posttitle" type="text" class="validate" name="post[title]">
-        <label for="posttitle">First Name</label>
-      </div>
-      <div class="input-field col s6">
-        <input id="imageurl" type="text" class="validate" value="<%= post.image %>" name="post[image]">
-        <label for="imageurl">Image URL</label>
-      </div>
-      <div class="input-field col s12">
-        <textarea id="postarea" class="materialize-textarea" name="post[content]" class="editable"><%= post.content %></textarea>
-      </div>
-    </div>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-      <i class="material-icons right">send</i>
-    </button>
-  </form>
-</div>
-
+<form action="/blogs/<%= post._id %>?_method=PUT" method="post">
+  <div class="form-group">
+    <label for="author">Author</label>
+    <input type="text" class="form-control" id="author" value="<%=post.author%>" name=post[author]>
+  </div>
+  <div class="form-group">
+    <label for="posttitle">Post Title</label>
+    <input type="text" class="form-control" id="posttitle" value="<%=post.title%>" name=post[title]>
+  </div>
+  <div class="form-group">
+    <label for="postintro">Post Intro</label>
+    <input type="text" class="form-control" id="postintro" value="<%=post.intro%>" name=post[intro]>
+  </div>
+  <div class="form-group">
+    <label for="imageurl">Image URL</label>
+    <input type="text" class="form-control" id="imageurl" value="<%=post.image%>" name=post[image]>
+  </div>
+  <div class="form-group">
+    <label for="type">Post Type</label>
+    <select class="form-control" id="type" name=post[postType]>
+      <option>Tech Review</option>
+      <option>Opinion</option>
+      <option>Tutorial</option>
+      <option>Movie Review</option>
+      <option>Programming</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="content">Post Content</label>
+    <textarea class="form-control" id="content" class="editable" name=post[content]><%= post.content %></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 <% include ../partials/footer %>

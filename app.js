@@ -14,7 +14,9 @@ var blogRoutes = require('./routes/blogs'),
 
 // Mongoose Settings
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/al-tech");
+mongoose.connect("mongodb://192.168.1.118:32769/al-tech");
+// mongoose.connect("mongodb://212.159.72.122:32769/al-tech");
+// mongoose.connect("mongodb://localhost/al-tech");
 
 // Express Settings
 app.use(bodyParser.urlencoded({extended: true}));
