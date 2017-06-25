@@ -9,7 +9,8 @@ var express = require("express"),
     Post = require('./models/posts');
 
 var blogRoutes = require('./routes/blogs'),
-    indexRoutes = require('./routes/index');
+    indexRoutes = require('./routes/index'),
+    serviceRoutes = require('./routes/service');
 
 // Mongoose Settings
 mongoose.Promise = global.Promise;
@@ -22,11 +23,10 @@ app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
 app.use(expressSanitizer());
 
-
-
 // Routes
 app.use('/', indexRoutes);
 app.use('/blogs', blogRoutes);
+app.use('/services', serviceRoutes);
 
 
 if (local){
