@@ -24,6 +24,9 @@
     <% if (post.postType === "Opinion"){ %>
       <a href="" class="light-green-text"><h5><i class="fa fa-commenting"></i> Opinion</h5></a>
     <% } %>
+    <% if (post.postType === "Tutorial"){ %>
+      <a href="" class="red-text"><h5><i class="fa fa-graduation-cap" aria-hidden="true"></i> Tutorial</h5></a>
+    <% } %>
     <h4><%=post.title%></h4>
     <p><%-post.intro%></p>
     <p>by <a><strong><%=post.author%></strong></a>, 26/08/2016</p>
