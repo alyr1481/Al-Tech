@@ -13,7 +13,7 @@ router.get("/",function(req,res){
     if(err){
       console.log("Error!!!" + err);
     } else{
-      res.render("index",{posts: posts});
+      res.render("blogs/index",{posts: posts});
     }
   });
 });
@@ -21,7 +21,7 @@ router.get("/",function(req,res){
 
 // New Posts Page
 router.get("/new",function(req,res){
-  res.render("new");
+  res.render("blogs/new");
 });
 
 router.post("/",function(req,res){
@@ -42,7 +42,7 @@ router.get("/:id",function(req,res){
     if (err){
       console.log(err);
     } else{
-      res.render("show",{post: foundPost});
+      res.render("blogs/show",{post: foundPost});
     }
   });
 });
@@ -50,7 +50,7 @@ router.get("/:id",function(req,res){
 // Edit Page
 router.get("/:id/edit",function(req,res){
   Post.findById(req.params.id,function(err,foundPost){
-    res.render("edit",{post:foundPost});
+    res.render("blogs/edit",{post:foundPost});
   });
 });
 
