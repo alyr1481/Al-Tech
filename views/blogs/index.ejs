@@ -18,7 +18,12 @@
     </div>
   </div>
   <div class="col-md-7 mb-r">
-    <a href="" class="light-blue-text"><h5><i class="fa fa-desktop"></i> Tech Review</h5></a>
+    <% if (post.postType == "Tech Review"){ %>
+      <a href="" class="light-blue-text"><h5><i class="fa fa-desktop"></i> Tech Review</h5></a>
+    <% } %>
+    <% if (post.postType === "Opinion"){ %>
+      <a href="" class="light-green-text"><h5><i class="fa fa-commenting"></i> Opinion</h5></a>
+    <% } %>
     <h4><%=post.title%></h4>
     <p><%-post.intro%></p>
     <p>by <a><strong><%=post.author%></strong></a>, 26/08/2016</p>
