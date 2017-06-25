@@ -6,6 +6,7 @@
       <div class="card-image">
         <img src="<%= post.image %>">
         <span class="card-title title-span"><%= post.title %></span>
+        <a class="btn-floating halfway-fab waves-effect waves-light red" href="/blogs/<%= post._id %>/edit"><i class="material-icons">edit</i></a>
       </div>
       <div class="card-content">
         <p><%- post.content %></p>
