@@ -14,3 +14,7 @@ nav{
   padding-left: 24px !important;
   margin-bottom: 15px;
 }
+
+.card-img-top {
+    width: 100%;
+}

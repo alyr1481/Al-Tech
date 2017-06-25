@@ -4,9 +4,15 @@
     <!-- Make site responsive on mobile/tablet -->
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Al-Tech</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- BootStrap Inits -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/stylesheets/mdb.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="/stylesheets/main.css">
     <%# <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=tjfaip6eextjagyo02h58aiy4dk2aqvusm1bv012n6zje4yg"></script>%>
     <script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
@@ -24,16 +30,17 @@
     });</script>
   </head>
   <body>
-    <nav>
-      <div class="nav-wrapper">
-        <div class="container">
-          <a href="#" class="brand-logo">Al-Tech</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/services">Services</a></li>
-            <li><a href="/blogs">Blogs</a></li>
-            <li><a href="badges.html">About Me</a></li>
-            <li><a href="collapsible.html">Login</a></li>
-          </ul>
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="/">Al-Tech</a>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/">Home</a>
+          <a class="nav-item nav-link" href="/services">Services</a>
+          <a class="nav-item nav-link" href="/blogs">Blogs</a>
         </div>
       </div>
     </nav>
