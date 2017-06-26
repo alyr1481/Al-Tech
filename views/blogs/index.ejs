@@ -1,11 +1,12 @@
 <% include ../partials/header %>
 
+<div class="section">
 <p>
-  <a href="/blogs/new" class="btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">add</i></a>
+  <a class="btn-floating btn-large blue pull-right" href="/blogs/new"><i class="fa fa-plus"></i></a>
   <h4>Recent Blogs</h4>
   <hr>
 </p>
-
+</div>
 
 <% posts.reverse().forEach(function(post){ %>
 <div class="row">

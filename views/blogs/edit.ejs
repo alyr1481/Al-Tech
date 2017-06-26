@@ -20,11 +20,31 @@
   <div class="form-group">
     <label for="type">Post Type</label>
     <select class="form-control" id="type" name=post[postType]>
-      <option>Tech Review</option>
-      <option>Opinion</option>
-      <option>Tutorial</option>
-      <option>Movie Review</option>
-      <option>Programming</option>
+      <%if (post.postType === "Tech Review"){ %>
+        <option selected>Tech Review</option>
+      <%}else{%>
+        <option>Tech Review</option>
+      <%}%>
+       <%if (post.postType === "Opinion"){ %>
+        <option selected>Opinion</option>
+      <%}else{%>
+        <option>Opinion</option>
+      <%}%>
+      <%if (post.postType === "Tutorial"){ %>
+        <option selected>Tutorial</option>
+      <%}else{%>
+        <option>Tutorial</option>
+      <%}%>
+       <%if (post.postType === "Movie Review"){ %>
+        <option selected>Movie Review</option>
+      <%}else{%>
+        <option>Movie Review</option>
+      <%}%>      
+       <%if (post.postType === "Programming"){ %>
+        <option selected>Programming</option>
+      <%}else{%>
+        <option>Programming</option>
+      <%}%>       
     </select>
   </div>
   <div class="form-group">
