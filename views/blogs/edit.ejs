@@ -1,6 +1,6 @@
 <% include ../partials/header %>
 
-<form action="/blogs/<%= post._id %>?_method=PUT" method="post">
+<form action="/blogs/<%= post._id %>?_method=PUT" method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="author">Author</label>
     <input type="text" class="form-control" id="author" value="<%=post.author%>" name=post[author]>
@@ -13,10 +13,34 @@
     <label for="postintro">Post Intro</label>
     <input type="text" class="form-control" id="postintro" value="<%=post.intro%>" name=post[intro]>
   </div>
-  <div class="form-group">
-    <label for="imageurl">Image URL</label>
-    <input type="text" class="form-control" id="imageurl" value="<%=post.image%>" name=post[image]>
+
+  <label>Image Upload/URL</label>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="md-form">
+        <div class="file-field">
+          <div class="btn btn-primary btn-sm ">
+            <span>Choose file</span>
+            <input type="file" id="fileupload" name="imageFile">
+          </div>
+          <div class="file-path-wrapper" style="margin-top:18px;">
+            <input class="file-path validate" type="text" placeholder="Upload your file" value="<%=post.imageFile%>">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <h4 style="text-align:center; padding-top:24px;">OR</h4>
+    </div>
+
+    <div class="col-md-5">
+      <div class="md-form">
+        <input type="text" class="form-control" placeholder="Image URL" value="<%=post.imageURL%>" name=post[imageURL]>
+      </div>
+    </div>
   </div>
+
   <div class="form-group">
     <label for="type">Post Type</label>
     <select class="form-control" id="type" name=post[postType]>
@@ -39,12 +63,12 @@
         <option selected>Movie Review</option>
       <%}else{%>
         <option>Movie Review</option>
-      <%}%>      
+      <%}%>
        <%if (post.postType === "Programming"){ %>
         <option selected>Programming</option>
       <%}else{%>
         <option>Programming</option>
-      <%}%>       
+      <%}%>
     </select>
   </div>
   <div class="form-group">

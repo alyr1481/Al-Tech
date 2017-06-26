@@ -2,6 +2,17 @@
 var express = require("express");
 var router  = express.Router({mergeParams: true});
 var Post = require("../models/posts");
+var multer = require("multer");
+
+var storage =   multer.diskStorage({
+  destination: function(req, file, callback) {
+    callback(null, './public/images/uploads');
+  },
+  filename: function(req, file, callback) {
+    callback(null, Date.now() + file.originalname);
+  }
+});
+var upload = multer({ storage : storage}).single('imageFile');
 
 //============
 // Blog Routes
@@ -25,13 +36,22 @@ router.get("/new",function(req,res){
 });
 
 router.post("/",function(req,res){
-  req.body.post.content = req.sanitize(req.body.post.content);
-  Post.create(req.body.post,function(err,post){
-   if (err){
-     console.log(err);
-   } else {
-     res.redirect("/blogs");
-   }
+  upload(req,res, function(err){
+    if (err){
+      return res.send("Error Uploading File");
+    }
+    if (typeof req.file !== "undefined"){
+      var imageFile = '/images/uploads/' + req.file.filename;
+      req.body.post.content = req.sanitize(req.body.post.content);
+      req.body.post.imageFile = imageFile;
+    }
+    Post.create(req.body.post,function(err,post){
+     if (err){
+       console.log(err);
+     } else {
+       res.redirect("/blogs");
+     }
+   });
  });
 });
 
@@ -55,13 +75,24 @@ router.get("/:id/edit",function(req,res){
 });
 
 router.put("/:id",function(req,res){
-  Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,post){
+  upload(req,res, function(err){
     if (err){
-      console.log(error);
-      res.redirect("back");
-    } else{
-      res.redirect("/blogs/"+post.id);
+      return res.send("Error Uplaoding File");
     }
+    if (typeof req.file !== "undefined"){
+      var imageFile = '/images/uploads/' + req.file.filename;
+      req.body.post.content = req.sanitize(req.body.post.content);
+      req.body.post.imageFile = imageFile;
+    }
+
+    Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,post){
+      if (err){
+        console.log(error);
+        res.redirect("back");
+      } else{
+        res.redirect("/blogs/"+post.id);
+      }
+    });
   });
 });
 

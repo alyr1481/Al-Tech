@@ -1,4 +1,4 @@
-var local = 0 //Set to 0 if using C9
+var local = 1 //Set to 0 if using C9
 
 var express = require("express"),
     app = express(),
@@ -14,9 +14,9 @@ var blogRoutes = require('./routes/blogs'),
 
 // Mongoose Settings
 mongoose.Promise = global.Promise;
-//mongoose.connect("mongodb://192.168.1.118:32769/al-tech");
+mongoose.connect("mongodb://192.168.1.118:32769/al-tech");
 //mongoose.connect("mongodb://alyr1481:robiles1481@ds135812.mlab.com:35812/al-tech");
-mongoose.connect("mongodb://212.159.79.122:32769/al-tech");
+//mongoose.connect("mongodb://212.159.79.122:32769/al-tech");
 //mongoose.connect("mongodb://localhost/al-tech");
 
 // Express Settings

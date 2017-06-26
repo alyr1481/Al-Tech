@@ -9,7 +9,11 @@
     <div class="col-md-12">
     <!--Featured image-->
     <div class="view overlay hm-white-slight">
-      <img src="<%=post.image%>">
+      <%if (post.imageFile){ %>
+        <img src="<%=post.imageFile%>">
+      <%} else {%>
+        <img src="<%=post.imageURL%>">
+      <%}%>
       <a>
       <div class=""></div>
         </a>
