@@ -33,6 +33,10 @@
           <i class="fa fa-edit left "></i>
           <span class="hidden-md-down ">Edit Post</span>
         </a>
+          <form action="/blogs/<%=post._id%>?_method=DELETE" method="POST" class="delete-form">
+            <button class="btn btn-danger"><span class="hidden-md-down "><i class="fa fa-close"></i> Delete Post</span></button>
+          </form>
+        </a>
       </div>
 
     </div>

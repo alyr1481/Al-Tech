@@ -84,7 +84,6 @@ router.put("/:id",function(req,res){
       req.body.post.content = req.sanitize(req.body.post.content);
       req.body.post.imageFile = imageFile;
     }
-
     Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,post){
       if (err){
         console.log(error);
@@ -96,5 +95,15 @@ router.put("/:id",function(req,res){
   });
 });
 
+// Delete Route
+router.delete("/:id", function(req,res){
+  Post.findByIdAndRemove(req.params.id, function(err){
+    if(err){
+      res.redirect("/blogs");
+    } else{
+      res.redirect("/blogs");
+    }
+  });
+});
 
 module.exports = router;
