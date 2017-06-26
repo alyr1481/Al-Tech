@@ -6,15 +6,16 @@ nav{
   color: black;
 }
 
-.title-span{
-  background-color: rgba(0,0,0, 0.75);
-  display: block;
-  width: 100%;
-  padding: 1px !important;
-  padding-left: 24px !important;
-  margin-bottom: 15px;
-}
-
 .card-img-top {
     width: 100%;
+}
+
+.blogs-index-card{
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.blogs-index-intro{
+  text-align: justify; 
+  text-justify: inter-word;
 }
