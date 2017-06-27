@@ -1,4 +1,4 @@
-var local = 1 //Set to 0 if using C9
+var local = 0 //Set to 0 if using C9
 
 var express = require("express"),
     app = express(),

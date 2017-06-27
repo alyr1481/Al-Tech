@@ -79,10 +79,13 @@ router.put("/:id",function(req,res){
     if (err){
       return res.send("Error Uplaoding File");
     }
-    if (typeof req.file !== "undefined"){
+    if (typeof req.file !== "undefined" && req.body.post.imageFile){
       var imageFile = '/images/uploads/' + req.file.filename;
       req.body.post.content = req.sanitize(req.body.post.content);
       req.body.post.imageFile = imageFile;
+    }
+    else{
+      req.body.post.imagefile = "";
     }
     Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,post){
       if (err){
