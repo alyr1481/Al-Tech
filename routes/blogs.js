@@ -81,7 +81,7 @@ router.put("/:id",function(req,res){
     }
     if (typeof req.file !== "undefined" && req.body.post.imageFile){
       var imageFile = '/images/uploads/' + req.file.filename;
-      req.body.post.content = req.sanitize(req.body.post.content);
+      //req.body.post.content = req.sanitize(req.body.post.content);
       req.body.post.imageFile = imageFile;
     }
     else{
