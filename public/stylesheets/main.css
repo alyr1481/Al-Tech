@@ -31,3 +31,17 @@ nav{
 .delete-form {
   display: inline;
 }
+
+.alert-danger{
+  color: white;
+  text-align: center;
+  text-transform: capitalize;
+  background-color: #C00;
+}
+
+.alert-success{
+  color: white;
+  text-align: center;
+  text-transform: capitalize;
+  background-color: #00c851;
+}

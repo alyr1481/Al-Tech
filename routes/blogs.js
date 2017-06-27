@@ -49,6 +49,7 @@ router.post("/",function(req,res){
      if (err){
        console.log(err);
      } else {
+       req.flash("success", "Post Successfully Added - "+post.title);
        res.redirect("/blogs");
      }
    });
@@ -109,6 +110,7 @@ router.delete("/:id", function(req,res){
       }
     });
   } else{
+    req.flash("error", "Deletion Verification Failed");
     res.redirect("/blogs/"+req.params.id);
   }
 });

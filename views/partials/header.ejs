@@ -17,6 +17,8 @@
     <link href="/stylesheets/mdb.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="/stylesheets/main.css">
+    <script src="/js/modules/toasts.js" type="text/javascript"></script>
+
   </head>
   <body>
 
@@ -35,4 +37,17 @@
     </nav>
 
     <p>
-      <div class="container">
+    <div class="container">
+      <% if(error && error.length > 0){ %>
+        <div class="alert alert-danger" role="alert">
+          <%= error %>
+        </div>
+      <% } %>
+      <% if(success && success.length > 0){ %>
+        <div class="alert alert-success" role="alert">
+          <%= success %>
+        </div>
+      <% } %>
+    </div>
+
+    <div class="container">

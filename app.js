@@ -1,4 +1,4 @@
-var local = 0 //Set to 0 if using C9
+var local = 1 //Set to 0 if using C9
 
 var express = require("express"),
     app = express(),
@@ -6,6 +6,8 @@ var express = require("express"),
     bodyParser = require('body-parser'),
     expressSanitizer = require("express-sanitizer"),
     methodOverride = require('method-override'),
+    session = require('express-session'),
+    flash = require("connect-flash"),
     Post = require('./models/posts');
 
 var blogRoutes = require('./routes/blogs'),
@@ -26,6 +28,19 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
 app.use(expressSanitizer());
+app.use(flash());
+
+app.use(session({
+  secret: 'Nozza is awesome!!',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(function(req,res,next){
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+  next();
+});
 
 // Routes
 app.use('/', indexRoutes);
