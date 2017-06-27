@@ -1,5 +1,19 @@
 <% include ../partials/header %>
 
+<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({
+      selector:'textarea',
+      menubar: false,  // removes the menubar
+      height: 500,
+      theme: 'modern',
+      branding: false,
+      plugins: [
+        'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+        'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+        'save table contextmenu directionality emoticons template paste textcolor'
+      ],
+    });</script>
+
 <form action="/blogs/<%= post._id %>?_method=PUT" method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="author">Author</label>
