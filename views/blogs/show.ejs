@@ -25,15 +25,18 @@
       <p>Written by <a><%=post.author%></a>, 26/08/2016</p>
 
       <a class="btn btn-default ">
-        <i class="fa fa-comments-o left "></i>
-        <span class="hidden-md-down ">Comments</span>
+        <i class="fa fa-comments-o"></i>
+        <span class="hidden-md-down "> Comments</span>
       </a>
       <a class="btn btn-warning " href="/blogs/<%=post.id%>/edit">
-        <i class="fa fa-edit left "></i>
-        <span class="hidden-md-down ">Edit Post</span>
+        <i class="fa fa-edit"></i>
+        <span class="hidden-md-down "> Edit Post</span>
       </a>
-        <form action="/blogs/<%=post._id%>?_method=DELETE" method="POST" class="delete-form">
-          <button class="btn btn-danger"><span class="hidden-md-down "><i class="fa fa-close"></i> Delete Post</span></button>
+        <form action="/blogs/<%=post._id%>?_method=DELETE" method="POST" class="delete-form" id="delete-form">
+          <a class="btn btn-danger" href="javascript:void()" onclick="document.getElementById('delete-form').submit();">
+            <i class="fa fa-close"></i>
+            <span class="hidden-md-down"> Delete Post</span>
+          </a>
         </form>
       </a>
     </div>
