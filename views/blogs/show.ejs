@@ -1,5 +1,24 @@
 <% include ../partials/header %>
 
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '1474526219297679',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 
 <section class="section section-blog-fw">
   <!--First row-->
@@ -26,11 +45,12 @@
         <i class="fa fa-comments-o"></i>
         <span class="hidden-md-down ">Comments</span>
       </a>
-      <a class="btn btn-fb ">
-       <i class="fa fa-facebook left "></i>
+      <a class="btn btn-fb"  id="shareBtn">
+       <i class="fa fa-facebook left"></i>
        <span class="hidden-md-down ">Facebook</span>
      </a>
-     <a class="btn btn-tw ">
+     <a class="btn btn-tw twitter-share-button" href="https://twitter.com/intent/tweet">
+       <link rel="canonical" href="/blogs/<%=post.id%>">
        <i class="fa fa-twitter left "></i>
        <span class="hidden-md-down ">Twitter</span>
      </a>
@@ -92,5 +112,15 @@
   </div>
 </div>
 <!-- Modal -->
+
+<script>
+document.getElementById('shareBtn').onclick = function() {
+  FB.ui({
+    method: 'share',
+    display: 'popup',
+    href: 'https://developers.facebook.com/docs/',
+  }, function(response){});
+}
+</script>
 
 <% include ../partials/footer %>
