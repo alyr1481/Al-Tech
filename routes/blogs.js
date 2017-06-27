@@ -89,7 +89,7 @@ router.put("/:id",function(req,res){
     }
     Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,post){
       if (err){
-        console.log(error);
+        console.log(err);
         res.redirect("back");
       } else{
         res.redirect("/blogs/"+post.id);
@@ -100,13 +100,17 @@ router.put("/:id",function(req,res){
 
 // Delete Route
 router.delete("/:id", function(req,res){
-  Post.findByIdAndRemove(req.params.id, function(err){
-    if(err){
-      res.redirect("/blogs");
-    } else{
-      res.redirect("/blogs");
-    }
-  });
+  if (req.body.verify === req.body.postTitle){
+    Post.findByIdAndRemove(req.params.id, function(err){
+      if(err){
+        res.redirect("/blogs");
+      } else{
+        res.redirect("/blogs");
+      }
+    });
+  } else{
+    res.redirect("/blogs/"+req.params.id);
+  }
 });
 
 module.exports = router;

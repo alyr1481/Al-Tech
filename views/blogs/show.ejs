@@ -65,16 +65,19 @@
       <!--Body-->
       <div class="modal-body">
         <form action="/blogs/<%=post._id%>?_method=DELETE" method="POST" class="delete-form" id="delete-form">
+            <div class="form-group">
+              <h6>Please Type in the name of the post (<%=post.title%>)</h6>
+              <input type="text" class="form-control" name="verify" style="text-align: center;">
+              <input type="hidden" name="postTitle" value="<%=post.title%>">
+            </div>
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
           <a class="btn btn-danger" href="javascript:void()" onclick="document.getElementById('delete-form').submit();">
             <i class="fa fa-close"></i>
             <span class="hidden-md-down"> Delete Post</span>
           </a>
         </form>
-      </div>
-      <!--Footer-->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
     <!--/.Content-->
