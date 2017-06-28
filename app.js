@@ -1,4 +1,4 @@
-var local = 0 //Set to 0 if using C9
+var local = 1 //Set to 0 if using C9
 require('dotenv').config();
 
 var express = require("express"),
@@ -17,11 +17,11 @@ var blogRoutes = require('./routes/blogs'),
 
 // Mongoose Settings
 mongoose.Promise = global.Promise;
-if (local){
-  mongoose.connect(process.env.MONGO_LOCAL);
-} else{
+// if (local){
+  // mongoose.connect(process.env.MONGO_LOCAL);
+// } else{
   mongoose.connect(process.env.MONGO_REMOTE);
-}
+// }
 
 // Express Settings
 app.use(bodyParser.urlencoded({extended: true}));
