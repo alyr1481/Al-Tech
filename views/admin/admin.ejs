@@ -1,0 +1,62 @@
+<% include ../partials/header_noCont %>
+
+<div class="col-md-4">
+  <div class="card">
+    <div class="container">
+      <h3>Post Types</h3>
+      <a class="btn btn-danger" data-toggle="modal" data-target="#newPostType">
+        <i class="fa fa-close"></i>
+        <span class="hidden-md-down ">New Post Type</span>
+      </a>
+      <div id="scrollable-content">
+        <ul>
+          <% postType.forEach(function(postType){ %>
+            <div class="card">
+              <li><%=postType.name%></li>
+            </div>
+          <%});%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="newPostType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">New Post Type</h4>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <form action="/admin" method="POST" id="newPostType-form">
+            <div class="form-group">
+              <h6>Please Type in the name of the post</h6>
+              <input type="text" class="form-control" name="postType[name]" style="text-align: center;">
+              <input type="text" class="form-control" name="postType[icon]" style="text-align: center;">
+              <input type="text" class="form-control" name="postType[color]" style="text-align: center;">
+            </div>
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+          <a class="btn btn-danger btn-block" href="javascript:void()" onclick="document.getElementById('newPostType-form').submit();">
+            <i class="fa fa-close"></i>
+            <span class="hidden-md-down"> Delete Post</span>
+          </a>
+        </form>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!-- Modal -->
+
+<% include ../partials/footer_noCont %>

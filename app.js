@@ -1,4 +1,4 @@
-var local = 0 //Set to 0 if using C9
+var local = 1 //Set to 0 if using C9
 require('dotenv').config();
 
 var express = require("express"),
@@ -10,9 +10,11 @@ var express = require("express"),
     session = require('express-session'),
     flash = require("connect-flash"),
     Post = require('./models/posts');
+    PostType = require('./models/postTypes');
 
 var blogRoutes = require('./routes/blogs'),
     indexRoutes = require('./routes/index'),
+    adminRoutes = require('./routes/admin'),
     serviceRoutes = require('./routes/service');
 
 // Mongoose Settings
@@ -46,6 +48,7 @@ app.use(function(req,res,next){
 // Routes
 app.use('/', indexRoutes);
 app.use('/blogs', blogRoutes);
+app.use('/admin', adminRoutes);
 app.use('/services', serviceRoutes);
 
 
