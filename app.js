@@ -18,7 +18,7 @@ var blogRoutes = require('./routes/blogs'),
 
 // Mongoose Settings
 mongoose.Promise = global.Promise;
-if (process.env.LOCAL_OR_REMOTE===1){
+if (process.env.LOCAL_OR_REMOTE==1){
  mongoose.connect(process.env.MONGO_LOCAL);
 } else{
 mongoose.connect(process.env.MONGO_REMOTE);
@@ -51,7 +51,7 @@ app.use('/admin', adminRoutes);
 app.use('/services', serviceRoutes);
 
 
-if (process.env.LOCAL_OR_REMOTE===1){
+if (process.env.LOCAL_OR_REMOTE==1){
   app.listen(3000,function(){
     console.log("SERVER HAS STARTED!");
   });

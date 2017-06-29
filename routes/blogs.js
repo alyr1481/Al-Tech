@@ -2,6 +2,7 @@
 var express = require("express");
 var router  = express.Router({mergeParams: true});
 var Post = require("../models/posts");
+var PostType = require("../models/postTypes");
 var multer = require("multer");
 
 var storage =   multer.diskStorage({

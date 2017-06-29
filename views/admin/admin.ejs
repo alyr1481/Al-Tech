@@ -1,53 +1,97 @@
 <% include ../partials/header_noCont %>
 
-<div class="col-md-4">
-  <div class="card" style="padding-top:15px; padding-bottom:15px;">
-    <div class="container">
-      <h3>Post Types</h3>
-      <a class="btn btn-danger" data-toggle="modal" data-target="#newPostType">
-        <i class="fa fa-close"></i>
+  <div class="col-md-4">
+    <div class="card" style="padding-top:15px; padding-bottom:15px;">
+      <div class="container">
+        <h3 style="padding-bottom: 10px;">List of Post Types</h3>
+        <a class="btn btn-default btn-block" data-toggle="modal" data-target="#newPostType">
+        <i class="fa fa-plus"></i>
         <span class="hidden-md-down ">New Post Type</span>
       </a>
-      <hr>
-      <div id="scrollable-content">
-        <ul>
-          <% postType.forEach(function(postType){ %>
-            <div class="card" style="padding-top:8px;">
-              <li style="color:<%=postType.color%>; padding-right: 10px;">
-                <h5>
-                  <i class="fa fa-<%=postType.icon%>"></i> <%=postType.name%>
-                  <a class="pull-right" style="color: red;"><i class="fa fa-close"></i></a>
-                  <a class="pull-right" style="color: orange; padding-right: 5px;"><i class="fa fa-edit"></i></a>
+        <hr>
+        <div id="scrollable-content">
+          <ul>
+            <% postType.forEach(function(postType){ %>
+              <div class="card" style="padding-top:8px;">
+                <li style="color:<%=postType.color%>; padding-right: 10px;">
+                  <h5>
+                  <i class="fa fa-<%=postType.icon%>"></i>&nbsp;&nbsp;<%=postType.name%>
+                  <form action="/admin/post-type/<%=postType._id%>?_method=DELETE" method="POST" id="delete-form-<%=postType.id%>" class="form-inline pull-right"></form>
+                  <a class="pull-right" style="color: red;" onclick="document.getElementById('delete-form-<%=postType.id%>').submit();"><i class="fa fa-close"></i></a>
+                  <a class="pull-right" style="color: orange; padding-right: 5px;" data-toggle="modal" data-target="#editPostType-<%=postType.id%>"><i class="fa fa-edit"></i></a>
                 </h5>
-              </li>
-            </div>
-          <%});%>
-        </ul>
+                </li>
+              </div>
+
+              <!-- Modal -->
+              <div class="modal fade" id="editPostType-<%=postType.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <!--Content-->
+                  <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                      <h4 class="modal-title w-100" id="myModalLabel">Edit <%=postType.name%></h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+                      <form action="/admin/post-type/<%=postType.id%>?_method=PUT" method="POST" id="editPostType-<%=postType.id%>-form">
+                        <div class="form-group">
+                          <div class="form-group">
+                            <label for="postName">Name</label>
+                            <input type="text" class="form-control" name="postType[name]" style="text-align: center;" id="postName" value="<%=postType.name%>">
+                          </div>
+                          <div class="form-group">
+                            <label for="postIcon">Icon</label>
+                            <input type="text" class="form-control" name="postType[icon]" style="text-align: center;" id="postIcon" value="<%=postType.icon%>">
+                          </div>
+                          <div class="form-group">
+                            <label for="postColor">Colour</label>
+                            <input type="text" class="form-control" name="postType[color]" style="text-align: center;" id="postColor" value="<%=postType.color%>">
+                          </div>
+                        </div>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                      <a class="btn btn-warning btn-block" href="javascript:void()" onclick="document.getElementById('editPostType-<%=postType.id%>-form').submit();">
+                      <i class="fa fa-edit"></i>
+                      <span class="hidden-md-down"> Edit Post Type</span>
+                    </a>
+                      </form>
+                    </div>
+                  </div>
+                  <!--/.Content-->
+                </div>
+              </div>
+              <!-- Modal -->
+              <%});%>
+          </ul>
+        </div>
+        <hr>
       </div>
-      <hr>
     </div>
   </div>
-</div>
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="newPostType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <!--Content-->
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  <!-- Modal -->
+  <div class="modal fade" id="newPostType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <!--Content-->
+      <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title w-100" id="myModalLabel">New Post Type</h4>
-      </div>
-      <!--Body-->
-      <div class="modal-body">
-        <form action="/admin" method="POST" id="newPostType-form">
+          <h4 class="modal-title w-100" id="myModalLabel">New Post Type</h4>
+        </div>
+        <!--Body-->
+        <div class="modal-body">
+          <form action="/admin/post-type" method="POST" id="newPostType-form">
             <div class="form-group">
-              <h6>Please Type in the name of the post</h6>
               <div class="form-group">
                 <label for="postName">Name</label>
                 <input type="text" class="form-control" name="postType[name]" style="text-align: center;" id="postName">
@@ -57,23 +101,23 @@
                 <input type="text" class="form-control" name="postType[icon]" style="text-align: center;" id="postIcon">
               </div>
               <div class="form-group">
-                <label for="postColor">Colour</label>
+                <label for="postColor">Colour (Hex Code)</label>
                 <input type="text" class="form-control" name="postType[color]" style="text-align: center;" id="postColor">
-              </div>  
+              </div>
             </div>
-      </div>
-      <!--Footer-->
-      <div class="modal-footer">
-          <a class="btn btn-danger btn-block" href="javascript:void()" onclick="document.getElementById('newPostType-form').submit();">
+        </div>
+        <!--Footer-->
+        <div class="modal-footer">
+          <a class="btn btn-default btn-block" href="javascript:void()" onclick="document.getElementById('newPostType-form').submit();">
             <i class="fa fa-close"></i>
-            <span class="hidden-md-down"> Delete Post</span>
+            <span class="hidden-md-down"> Add Post Type</span>
           </a>
-        </form>
+          </form>
+        </div>
       </div>
+      <!--/.Content-->
     </div>
-    <!--/.Content-->
   </div>
-</div>
-<!-- Modal -->
+  <!-- Modal -->
 
-<% include ../partials/footer_noCont %>
+  <% include ../partials/footer_noCont %>
