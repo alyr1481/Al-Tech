@@ -8,22 +8,23 @@
         <i class="fa fa-close"></i>
         <span class="hidden-md-down ">New Post Type</span>
       </a>
+      <hr>
       <div id="scrollable-content">
-        <hr>
         <ul>
           <% postType.forEach(function(postType){ %>
             <div class="card" style="padding-top:8px;">
-              <li style="color:<%=postType.color%>;">
+              <li style="color:<%=postType.color%>; padding-right: 10px;">
                 <h5>
                   <i class="fa fa-<%=postType.icon%>"></i> <%=postType.name%>
-                  <a class="pull-right"><i class="fa fa-edit"></i></a>
-                  <a class="pull-right"><i class="fa fa-close"></i></a>
+                  <a class="pull-right" style="color: red;"><i class="fa fa-close"></i></a>
+                  <a class="pull-right" style="color: orange; padding-right: 5px;"><i class="fa fa-edit"></i></a>
                 </h5>
               </li>
             </div>
           <%});%>
         </ul>
       </div>
+      <hr>
     </div>
   </div>
 </div>
