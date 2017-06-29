@@ -70,5 +70,12 @@ nav{
 
 #scrollable-content {
   height: 180px;
-  overflow: auto;
+  /*overflow: auto;*/
+  overflow-y: scroll;
+}
+
+#hide-scrollbar {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }

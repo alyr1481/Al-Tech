@@ -1,7 +1,7 @@
 <% include ../partials/header_noCont %>
 
 <div class="col-md-4">
-  <div class="card">
+  <div class="card" style="padding-top:15px; padding-bottom:15px;">
     <div class="container">
       <h3>Post Types</h3>
       <a class="btn btn-danger" data-toggle="modal" data-target="#newPostType">
@@ -9,10 +9,17 @@
         <span class="hidden-md-down ">New Post Type</span>
       </a>
       <div id="scrollable-content">
+        <hr>
         <ul>
           <% postType.forEach(function(postType){ %>
-            <div class="card">
-              <li><%=postType.name%></li>
+            <div class="card" style="padding-top:8px;">
+              <li style="color:<%=postType.color%>;">
+                <h5>
+                  <i class="fa fa-<%=postType.icon%>"></i> <%=postType.name%>
+                  <a class="pull-right"><i class="fa fa-edit"></i></a>
+                  <a class="pull-right"><i class="fa fa-close"></i></a>
+                </h5>
+              </li>
             </div>
           <%});%>
         </ul>
@@ -40,9 +47,18 @@
         <form action="/admin" method="POST" id="newPostType-form">
             <div class="form-group">
               <h6>Please Type in the name of the post</h6>
-              <input type="text" class="form-control" name="postType[name]" style="text-align: center;">
-              <input type="text" class="form-control" name="postType[icon]" style="text-align: center;">
-              <input type="text" class="form-control" name="postType[color]" style="text-align: center;">
+              <div class="form-group">
+                <label for="postName">Name</label>
+                <input type="text" class="form-control" name="postType[name]" style="text-align: center;" id="postName">
+              </div>
+              <div class="form-group">
+                <label for="postIcon">Icon</label>
+                <input type="text" class="form-control" name="postType[icon]" style="text-align: center;" id="postIcon">
+              </div>
+              <div class="form-group">
+                <label for="postColor">Colour</label>
+                <input type="text" class="form-control" name="postType[color]" style="text-align: center;" id="postColor">
+              </div>  
             </div>
       </div>
       <!--Footer-->

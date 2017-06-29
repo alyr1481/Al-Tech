@@ -1,4 +1,3 @@
-var local = 0 //Set to 0 if using C9
 require('dotenv').config();
 
 var express = require("express"),
@@ -19,7 +18,7 @@ var blogRoutes = require('./routes/blogs'),
 
 // Mongoose Settings
 mongoose.Promise = global.Promise;
-if (local){
+if (process.env.LOCAL_OR_REMOTE===1){
  mongoose.connect(process.env.MONGO_LOCAL);
 } else{
 mongoose.connect(process.env.MONGO_REMOTE);
@@ -52,7 +51,7 @@ app.use('/admin', adminRoutes);
 app.use('/services', serviceRoutes);
 
 
-if (local){
+if (process.env.LOCAL_OR_REMOTE===1){
   app.listen(3000,function(){
     console.log("SERVER HAS STARTED!");
   });
