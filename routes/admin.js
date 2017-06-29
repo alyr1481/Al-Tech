@@ -15,7 +15,8 @@ router.get("/",function(req,res){
 router.post("/",function(req, res){
   PostType.create(req.body.postType, function(err, newlyCreated){
     if(err){
-        console.log(err);
+        req.flash("error", err.message);
+        res.redirect("back");
     } else {
       res.redirect("/admin");
     }
