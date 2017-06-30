@@ -6,12 +6,10 @@ var postSchema = new mongoose.Schema({
    imageFile: String,
    content: String,
    author: String,
-   postType: {
-      id: String,
-      name: String,
-      color: String,
-      icon: String
-   },   
+   postType:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "PostType" 
+   },
    intro: String,
    imageURL: String,
    createdAt: { type: Date, default: Date.now }

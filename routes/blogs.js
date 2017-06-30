@@ -21,9 +21,9 @@ var upload = multer({ storage : storage}).single('imageFile');
 
 // Index Page
 router.get("/",function(req,res){
-  Post.find({},function(err,posts){
+  Post.find({}).populate("postType").exec(function(err,posts){
     if(err){
-      console.log("Error!!!" + err);
+      console.log("Error!!! " + err);
     } else{
       res.render("blogs/index",{posts: posts});
     }
@@ -57,7 +57,7 @@ router.post("/",function(req,res){
       if (err){
         console.log(err);
       } else{
-        req.body.post.postType=foundPostType;
+        req.body.post.postType=foundPostType._id;
         Post.create(req.body.post,function(err,post){
            if (err){
              console.log(err);
@@ -109,7 +109,7 @@ router.put("/:id",function(req,res){
       if (err){
         console.log(err);
       } else {
-        req.body.post.postType=foundPostType;
+        req.body.post.postType=foundPostType._id;
         Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,post){
           if (err){
             console.log(err);
