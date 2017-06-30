@@ -1,19 +1,28 @@
+require('dotenv').config();
 
 var express = require("express");
 var router  = express.Router({mergeParams: true});
 var Post = require("../models/posts");
 var PostType = require("../models/postTypes");
+var fs = require("fs");
+var AWS = require('aws-sdk');
 var multer = require("multer");
+var multerS3 = require('multer-s3');
 
-var storage =   multer.diskStorage({
-  destination: function(req, file, callback) {
-    callback(null, './public/images/uploads');
-  },
-  filename: function(req, file, callback) {
-    callback(null, Date.now() + file.originalname);
-  }
+
+// Multer and Amazon S3 Configuration
+AWS.config.loadFromPath('./s3_config.json');
+var s3 = new AWS.S3();
+var upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'al-tech-images',
+        key: function (req, file, cb) {
+            //console.log(file);
+            cb(null, Date.now() + file.originalname); //use Date.now() for unique file keys
+        }
+    })
 });
-var upload = multer({ storage : storage}).single('imageFile');
 
 //============
 // Blog Routes
@@ -42,32 +51,24 @@ router.get("/new",function(req,res){
   });
 });
 
-router.post("/",function(req,res){
-  upload(req,res, function(err){
+router.post("/",upload.array('imageFile',1), function(req,res,next){
+  PostType.findOne({ 'name': req.body.post.postType },'_id name color icon',function(err,foundPostType){
     if (err){
-      return res.send("Error Uploading File");
-    }
-    if (typeof req.file !== "undefined"){
-      var imageFile = '/images/uploads/' + req.file.filename;
-      req.body.post.content = req.sanitize(req.body.post.content);
-      req.body.post.imageFile = imageFile;
-    }
-    
-    PostType.findOne({ 'name': req.body.post.postType },'_id name color icon',function(err,foundPostType){
-      if (err){
+      console.log(err);
+    } else{
+      req.body.post.postType=foundPostType._id;
+      if (req.files.length > 0){
+        req.body.post.imageFile="https://s3.eu-west-2.amazonaws.com/al-tech-images/"+req.files[0].key;
+      }
+      Post.create(req.body.post,function(err,post){
+        if (err){
         console.log(err);
-      } else{
-        req.body.post.postType=foundPostType._id;
-        Post.create(req.body.post,function(err,post){
-           if (err){
-             console.log(err);
-           } else {
-             req.flash("success", "Post Successfully Added - "+post.title);
-             res.redirect("/blogs");
-           }
-        });
-      } 
-    });
+        } else {
+        req.flash("success", "Post Successfully Added - "+post.title);
+        res.redirect("/blogs");
+        }
+      });
+    }
   });
 });
 
@@ -87,42 +88,33 @@ router.get("/:id",function(req,res){
 router.get("/:id/edit",function(req,res){
   Post.findById(req.params.id).populate("postType").exec(function(err,foundPost){
     PostType.find({},function(err,allpostTypes){
-      console.log(foundPost);
       res.render("blogs/edit",{post:foundPost, allpostTypes: allpostTypes});
-    });  
+    });
   });
 });
 
-router.put("/:id",function(req,res){
-  upload(req,res, function(err){
+router.put("/:id",upload.array('imageFile',1),function(req,res,next){
+  PostType.findOne({ 'name': req.body.post.postType },'_id name color icon',function(err,foundPostType){
     if (err){
-      return res.send("Error Uplaoding File");
+      console.log(err);
+    } else{
+      req.body.post.postType=foundPostType._id;
+      if (req.files.length > 0){
+        req.body.post.imageFile="https://s3.eu-west-2.amazonaws.com/al-tech-images/"+req.files[0].key;
+      }
+      req.body.post.postType=foundPostType._id;
+      Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,post){
+        if (err){
+          console.log(err);
+          res.redirect("back");
+        } else{
+          res.redirect("/blogs/"+post.id);
+        }
+      });
     }
-    if (typeof req.file !== "undefined" && req.body.post.imageFile){
-      var imageFile = '/images/uploads/' + req.file.filename;
-      //req.body.post.content = req.sanitize(req.body.post.content);
-      req.body.post.imageFile = imageFile;
-    }
-    else{
-      req.body.post.imagefile = "";
-    }
-    PostType.findOne({ 'name': req.body.post.postType },'_id name color icon',function(err,foundPostType){
-      if (err){
-        console.log(err);
-      } else {
-        req.body.post.postType=foundPostType._id;
-        Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,post){
-          if (err){
-            console.log(err);
-            res.redirect("back");
-          } else{
-            res.redirect("/blogs/"+post.id);
-          }
-        });
-      }  
-    });  
   });
 });
+
 
 // Delete Route
 router.delete("/:id", function(req,res){

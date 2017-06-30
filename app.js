@@ -14,6 +14,7 @@ var express = require("express"),
 var blogRoutes = require('./routes/blogs'),
     indexRoutes = require('./routes/index'),
     adminRoutes = require('./routes/admin'),
+    commentRoutes = require('./routes/comments'),
     serviceRoutes = require('./routes/service');
 
 // Mongoose Settings
