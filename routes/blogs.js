@@ -9,14 +9,14 @@ var AWS = require('aws-sdk');
 var multer = require("multer");
 var multerS3 = require('multer-s3');
 
-
 // Multer and Amazon S3 Configuration
-AWS.config.loadFromPath('./s3_config.json');
+//AWS.config.loadFromPath('./s3_config.json');
 var s3 = new AWS.S3();
 var upload = multer({
     storage: multerS3({
         s3: s3,
         bucket: 'al-tech-images',
+        region:"eu-west-2",
         key: function (req, file, cb) {
             //console.log(file);
             cb(null, Date.now() + file.originalname); //use Date.now() for unique file keys
