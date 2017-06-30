@@ -59,32 +59,10 @@
 
   <div class="form-group">
     <label for="type">Post Type</label>
-    <select class="form-control" id="type" name=post[postType]>
-      <%if (post.postType === "Tech Review"){ %>
-        <option selected>Tech Review</option>
-      <%}else{%>
-        <option>Tech Review</option>
-      <%}%>
-       <%if (post.postType === "Opinion"){ %>
-        <option selected>Opinion</option>
-      <%}else{%>
-        <option>Opinion</option>
-      <%}%>
-      <%if (post.postType === "Tutorial"){ %>
-        <option selected>Tutorial</option>
-      <%}else{%>
-        <option>Tutorial</option>
-      <%}%>
-       <%if (post.postType === "Movie Review"){ %>
-        <option selected>Movie Review</option>
-      <%}else{%>
-        <option>Movie Review</option>
-      <%}%>
-       <%if (post.postType === "Programming"){ %>
-        <option selected>Programming</option>
-      <%}else{%>
-        <option>Programming</option>
-      <%}%>
+    <select class="form-control" id="type" name="post[postType]">
+      <% postType.forEach(function(postType){ %>
+      <option><%=postType.name%></option>
+      <%});%>
     </select>
   </div>
   <div class="form-group">

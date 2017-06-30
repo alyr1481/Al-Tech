@@ -59,11 +59,9 @@
   <div class="form-group">
     <label for="type">Post Type</label>
     <select class="form-control" id="type" name="post[postType]">
-      <option>Tech Review</option>
-      <option>Opinion</option>
-      <option>Tutorial</option>
-      <option>Movie Review</option>
-      <option>Programming</option>
+      <% postType.forEach(function(postType){ %>
+      <option><%=postType.name%></option>
+      <%});%>
     </select>
   </div>
   <div class="form-group">

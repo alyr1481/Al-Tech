@@ -33,7 +33,13 @@ router.get("/",function(req,res){
 
 // New Posts Page
 router.get("/new",function(req,res){
-  res.render("blogs/new");
+  PostType.find({},function(err,postType){
+    if (err){
+      console.log(err);
+    } else {
+      res.render("blogs/new",{postType: postType});
+    }
+  });
 });
 
 router.post("/",function(req,res){
@@ -46,15 +52,23 @@ router.post("/",function(req,res){
       req.body.post.content = req.sanitize(req.body.post.content);
       req.body.post.imageFile = imageFile;
     }
-    Post.create(req.body.post,function(err,post){
-     if (err){
-       console.log(err);
-     } else {
-       req.flash("success", "Post Successfully Added - "+post.title);
-       res.redirect("/blogs");
-     }
-   });
- });
+    
+    PostType.findOne({ 'name': req.body.post.postType },'_id name color icon',function(err,foundPostType){
+      if (err){
+        console.log(err);
+      } else{
+        req.body.post.postType=foundPostType;
+        Post.create(req.body.post,function(err,post){
+           if (err){
+             console.log(err);
+           } else {
+             req.flash("success", "Post Successfully Added - "+post.title);
+             res.redirect("/blogs");
+           }
+        });
+      } 
+    });
+  });
 });
 
 
@@ -72,7 +86,9 @@ router.get("/:id",function(req,res){
 // Edit Page
 router.get("/:id/edit",function(req,res){
   Post.findById(req.params.id,function(err,foundPost){
-    res.render("blogs/edit",{post:foundPost});
+    PostType.find({},function(err,postType){
+      res.render("blogs/edit",{post:foundPost, postType: postType});
+    });  
   });
 });
 
@@ -89,14 +105,21 @@ router.put("/:id",function(req,res){
     else{
       req.body.post.imagefile = "";
     }
-    Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,post){
+    PostType.findOne({ 'name': req.body.post.postType },'_id name color icon',function(err,foundPostType){
       if (err){
         console.log(err);
-        res.redirect("back");
-      } else{
-        res.redirect("/blogs/"+post.id);
-      }
-    });
+      } else {
+        req.body.post.postType=foundPostType;
+        Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,post){
+          if (err){
+            console.log(err);
+            res.redirect("back");
+          } else{
+            res.redirect("/blogs/"+post.id);
+          }
+        });
+      }  
+    });  
   });
 });
 

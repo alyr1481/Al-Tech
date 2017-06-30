@@ -25,21 +25,7 @@
   </div>
   <div class="col-md-6" style="padding-top:15px; margin-bottom=0px !important;">
     <div class="vert-center">
-      <% if (post.postType == "Tech Review"){ %>
-        <a href="" class="light-blue-text"><h5><i class="fa fa-desktop"></i> Tech Review</h5></a>
-      <% } %>
-      <% if (post.postType === "Opinion"){ %>
-        <a href="" class="light-green-text"><h5><i class="fa fa-commenting"></i> Opinion</h5></a>
-      <% } %>
-      <% if (post.postType === "Tutorial"){ %>
-        <a href="" class="red-text"><h5><i class="fa fa-graduation-cap" aria-hidden="true"></i> Tutorial</h5></a>
-      <% } %>
-      <% if (post.postType === "Movie Review"){ %>
-        <a href="" class="purple-text"><h5><i class="fa fa-film" aria-hidden="true"></i> Movie Review</h5></a>
-      <% } %>
-      <% if (post.postType === "Programming"){ %>
-        <a href="" class="indigo-text"><h5><i class="fa fa-hashtag" aria-hidden="true"></i> Programming</h5></a>
-      <% } %>
+      <a href="" style="color:<%=post.postType.color%>"><h5><i class="fa fa-<%=post.postType.icon%>" aria-hidden="true"></i> <%=post.postType.name%></h5></a>
       <h4><%=post.title%></h4>
       <p class="blogs-index-intro" style="padding-right:15px;"><%-post.intro%></p>
       <p>by <a><strong><%=post.author%></strong></a>, 26/08/2016</p>
