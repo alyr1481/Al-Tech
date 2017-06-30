@@ -8,7 +8,7 @@ var express = require("express"),
     methodOverride = require('method-override'),
     session = require('express-session'),
     flash = require("connect-flash"),
-    Post = require('./models/posts');
+    Post = require('./models/posts'),
     PostType = require('./models/postTypes');
 
 var blogRoutes = require('./routes/blogs'),
