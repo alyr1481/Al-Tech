@@ -10,7 +10,6 @@ var multer = require("multer");
 var multerS3 = require('multer-s3');
 
 // Multer and Amazon S3 Configuration
-//AWS.config.loadFromPath('./s3_config.json');
 var s3 = new AWS.S3();
 var upload = multer({
     storage: multerS3({
