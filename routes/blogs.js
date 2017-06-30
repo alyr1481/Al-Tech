@@ -33,11 +33,11 @@ router.get("/",function(req,res){
 
 // New Posts Page
 router.get("/new",function(req,res){
-  PostType.find({},function(err,postType){
+  PostType.find({},function(err,allpostTypes){
     if (err){
       console.log(err);
     } else {
-      res.render("blogs/new",{postType: postType});
+      res.render("blogs/new",{allpostTypes: allpostTypes});
     }
   });
 });
@@ -85,9 +85,10 @@ router.get("/:id",function(req,res){
 
 // Edit Page
 router.get("/:id/edit",function(req,res){
-  Post.findById(req.params.id,function(err,foundPost){
-    PostType.find({},function(err,postType){
-      res.render("blogs/edit",{post:foundPost, postType: postType});
+  Post.findById(req.params.id).populate("postType").exec(function(err,foundPost){
+    PostType.find({},function(err,allpostTypes){
+      console.log(foundPost);
+      res.render("blogs/edit",{post:foundPost, allpostTypes: allpostTypes});
     });  
   });
 });

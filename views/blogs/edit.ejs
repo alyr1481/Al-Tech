@@ -60,8 +60,13 @@
   <div class="form-group">
     <label for="type">Post Type</label>
     <select class="form-control" id="type" name="post[postType]">
-      <% postType.forEach(function(postType){ %>
-      <option><%=postType.name%></option>
+      <% allpostTypes.forEach(function(allpostTypes){ %>
+         <p><%=allpostTypes.name%> - <%=post.postType.name%></p>
+        <%if (allpostTypes.name==post.postType.name){ %> 
+          <option selected><%=allpostTypes.name%></option>
+        <%}else{ %> 
+          <option><%=allpostTypes.name%></option>
+        <%}%>  
       <%});%>
     </select>
   </div>
