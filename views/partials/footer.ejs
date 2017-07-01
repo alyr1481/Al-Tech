@@ -1,10 +1,95 @@
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Register</h4>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <form action="/users/register" method="POST" id="register-Form">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name=username>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" name=email>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name=password>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" name=confirmPassword>
+          </div>
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+          <a class="btn btn-default btn-block" href="javascript:void()" onclick="document.getElementById('register-Form').submit();">
+            <i class="fa fa-close"></i>
+            <span class="hidden-md-down"> Register</span>
+          </a>
+        </form>
+      </div>
     </div>
-    <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="/js/tether.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="/js/mdb.min.js"></script>
-  </body>
+    <!--/.Content-->
+  </div>
+</div>
+<!-- Modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Login</h4>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <form action="/users/login" method="POST" id="login-Form">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name=username>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name=password>
+          </div>
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+          <a class="btn btn-default btn-block" href="javascript:void()" onclick="document.getElementById('login-Form').submit();">
+            <i class="fa fa-close"></i>
+            <span class="hidden-md-down"> Login</span>
+          </a>
+        </form>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!-- Modal -->
+
+<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/tether.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdb.min.js"></script>
+</body>
 </html>
