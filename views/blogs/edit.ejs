@@ -28,7 +28,7 @@
     <input type="text" class="form-control" id="postintro" value="<%=post.intro%>" name=post[intro]>
   </div>
 
-  
+
   <div class="row">
     <div class="col-md-5">
       <label>Image Upload</label>
@@ -62,11 +62,11 @@
     <select class="form-control" id="type" name="post[postType]">
       <% allpostTypes.forEach(function(allpostTypes){ %>
          <p><%=allpostTypes.name%> - <%=post.postType.name%></p>
-        <%if (allpostTypes.name==post.postType.name){ %> 
+        <%if (allpostTypes.name==post.postType.name){ %>
           <option selected><%=allpostTypes.name%></option>
-        <%}else{ %> 
+        <%}else{ %>
           <option><%=allpostTypes.name%></option>
-        <%}%>  
+        <%}%>
       <%});%>
     </select>
   </div>
@@ -74,7 +74,7 @@
     <label for="content">Post Content</label>
     <textarea class="form-control" id="content" class="editable" name=post[content]><%= post.content %></textarea>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary btn-block">Submit</button>
 </form>
 
 <% include ../partials/footer %>

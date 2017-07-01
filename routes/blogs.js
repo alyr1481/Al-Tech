@@ -50,6 +50,7 @@ router.get("/new",function(req,res){
   });
 });
 
+// Create Route
 router.post("/",upload.array('imageFile',1), function(req,res,next){
   PostType.findOne({ 'name': req.body.post.postType },'_id name color icon',function(err,foundPostType){
     if (err){
@@ -83,7 +84,7 @@ router.get("/:id",function(req,res){
   });
 });
 
-// Edit Page
+// Edit Route
 router.get("/:id/edit",function(req,res){
   Post.findById(req.params.id).populate("postType").exec(function(err,foundPost){
     PostType.find({},function(err,allpostTypes){
@@ -92,6 +93,7 @@ router.get("/:id/edit",function(req,res){
   });
 });
 
+// Update Route
 router.put("/:id",upload.array('imageFile',1),function(req,res,next){
   PostType.findOne({ 'name': req.body.post.postType },'_id name color icon',function(err,foundPostType){
     if (err){
