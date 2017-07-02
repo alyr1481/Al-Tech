@@ -41,6 +41,9 @@ router.post("/login", passport.authenticate("local",
 
 // Logout Logic
 router.get("/logout",function(req,res){
+  // Give SES the details and let it construct the message for you.
+  console.log("Sending Email");
+
   req.logout();
   req.flash("success","You Have Successfully Logged Out");
   res.redirect("/");

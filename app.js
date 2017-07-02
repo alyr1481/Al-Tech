@@ -10,6 +10,7 @@ var express = require("express"),
     LocalStratergy = require('passport-local'),
     methodOverride = require('method-override'),
     session = require('express-session'),
+    nodemailer = require('nodemailer');
     Post = require('./models/posts'),
     PostType = require('./models/postTypes'),
     User = require("./models/users");
@@ -63,6 +64,30 @@ app.use('/blogs', blogRoutes);
 app.use('/admin', adminRoutes);
 app.use('/users', userRoutes);
 app.use('/services', serviceRoutes);
+
+// Node Mailer Send Live email
+let transporter = nodemailer.createTransport({
+     service: 'Gmail',
+     auth: {
+         user: process.env.PERSONAL_GMAIL_ADDRESS,
+         pass: process.env.PERSONAL_GMAIL_PASSWORD
+     }
+});
+
+let mailOptions = {
+    from: 'test@al-tech.co.uk', // sender address
+    to: process.env.PERSONAL_GMAIL_ADDRESS, // list of receivers
+    subject: 'Al-Tech Server Has Started', // Subject line
+    text: 'Hello world ?', // plain text body
+    html: '<b>Hello world ?</b>' // html body
+};
+
+transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+        return console.log(error);
+    }
+    console.log('Message %s sent: %s', info.messageId, info.response);
+});
 
 
 if (process.env.LOCAL_OR_REMOTE==1){
