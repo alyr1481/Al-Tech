@@ -34,7 +34,7 @@ router.post("/register",function(req,res){
 // Login Logic
 router.post("/login", passport.authenticate("local",
   {
-    successRedirect: "/blogs",
+    successRedirect: "back",
     failureRedirect: "/"
   }), function(req,res){
 });
