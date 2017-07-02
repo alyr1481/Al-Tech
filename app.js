@@ -75,19 +75,19 @@ let transporter = nodemailer.createTransport({
 });
 
 let mailOptions = {
-    from: 'test@al-tech.co.uk', // sender address
+    from: 'hello@alyr.co.uk', // sender address
     to: process.env.PERSONAL_GMAIL_ADDRESS, // list of receivers
     subject: 'Al-Tech Server Has Started', // Subject line
     text: 'Hello world ?', // plain text body
     html: '<b>Hello world ?</b>' // html body
 };
 
-transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-        return console.log(error);
-    }
-    console.log('Message %s sent: %s', info.messageId, info.response);
-});
+// transporter.sendMail(mailOptions, (error, info) => {
+//     if (error) {
+//         return console.log(error);
+//     }
+//     console.log('Message %s sent: %s', info.messageId, info.response);
+// });
 
 
 if (process.env.LOCAL_OR_REMOTE==1){
