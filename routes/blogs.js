@@ -75,7 +75,7 @@ router.post("/",upload.array('imageFile',1), function(req,res,next){
 
 // Show Page
 router.get("/:id",function(req,res){
-  Post.findById(req.params.id,function(err,foundPost){
+  Post.findById(req.params.id).populate("comments").exec(function(err,foundPost){
     if (err){
       console.log(err);
     } else{
