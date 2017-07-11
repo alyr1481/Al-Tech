@@ -89,6 +89,10 @@ app.use('/services', serviceRoutes);
 //     console.log('Message %s sent: %s', info.messageId, info.response);
 // });
 
+// Page That Gets Loaded if cannot get the URL etc etc. (To Repalce with custom 404 screen!)
+app.get('*', function(req, res) {
+    res.redirect('/');
+});
 
 if (process.env.LOCAL_OR_REMOTE==1){
   app.listen(3000,function(){
