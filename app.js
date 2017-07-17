@@ -61,6 +61,7 @@ app.use(function(req,res,next){
 // Routes
 app.use('/', indexRoutes);
 app.use('/blogs', blogRoutes);
+app.use('/blogs/:id/comments', commentRoutes);
 app.use('/admin', adminRoutes);
 app.use('/users', userRoutes);
 app.use('/services', serviceRoutes);

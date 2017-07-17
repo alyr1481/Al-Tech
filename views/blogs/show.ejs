@@ -63,7 +63,7 @@
           <i class="fa fa-close"></i>
           <span class="hidden-md-down ">Delete Post</span>
         </a>
-    <%}%>    
+    <%}%>
     </div>
 
 
@@ -81,9 +81,11 @@
 <!--Comments - Wrapper-->
 <div class="comments-list text-left">
   <div class="section-heading">
-    <h3>Comments <span class="badge blue">3</span></h3>
+    <% for (i=0;i<post.comments.length;i++){ }%>
+    <h3>Comments <span class="badge blue"><%=i%></span></h3>
   </div>
 <!--First row-->
+ <% post.comments.forEach(function(comment){ %>
   <div class="row">
     <!--Image column-->
     <div class="col-sm-2 col-12">
@@ -92,25 +94,26 @@
     <!--/.Image column-->
     <!--Content column-->
     <div class="col-sm-10 col-12">
-      <a><h3 class="user-name">John Doe</h3></a>
+      <a><h3 class="user-name"><%=comment.author.username%></h3></a>
       <div class="card-data">
         <ul>
         <li class="comment-date"><i class="fa fa-clock-o"></i> 05/10/2015</li>
         </ul>
       </div>
-      <p class="comment-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+      <p class="comment-text"><%=comment.content%></p>
     </div>
     <!--/.Content column-->
   </div>
+  <% }) %>
   <!--/.First row-->
 </div>
 <!--/.Main wrapper-->
 
 <div class="col-sm-10 col-12 offset-md-2">
   <div class="row">
-    <form action="/comments" method="POST" style="width:100%">
+    <form action="/blogs/<%=post.id%>/comments" method="POST" style="width:100%" id="submitComment">
       <textarea name=comment[content] type="text" style="width:100%" class="md-textarea" placeholder="Enter A Comment - Remember There Is A Human On The Other Keyboard"></textarea>
-      <a class="btn btn-default btn-block" style="margin-top: 20px;"><i class="fa fa-comments-o" aria-hidden="true"></i> Submit Comment</a>
+      <a class="btn btn-default btn-block" style="margin-top: 20px;" href="javascript:void()" onclick="document.getElementById('submitComment').submit();"><i class="fa fa-comments-o" aria-hidden="true"></i> Submit Comment</a>
     </form>
   </div>
 </div>
