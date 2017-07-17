@@ -31,4 +31,8 @@ router.post("/", middleware.isLoggedIn,function(req,res){
   });
 });
 
+router.get('*', function(req, res) {
+    res.render('errorPages/notFound');
+});
+
 module.exports = router;
