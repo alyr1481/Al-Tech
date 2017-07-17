@@ -92,7 +92,7 @@ app.use('/services', serviceRoutes);
 
 // Page That Gets Loaded if cannot get the URL etc etc. (To Repalce with custom 404 screen!)
 app.get('*', function(req, res) {
-    res.redirect('/');
+    res.render('errorPages/notFound');
 });
 
 if (process.env.LOCAL_OR_REMOTE==1){
