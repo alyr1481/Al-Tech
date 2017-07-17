@@ -77,7 +77,7 @@ router.post("/",upload.array('imageFile',1), function(req,res,next){
 router.get("/:id",function(req,res){
   Post.findById(req.params.id).populate("comments").exec(function(err,foundPost){
     if (err){
-      console.log(err);
+      res.render('errorPages/blogNotFound');
     } else{
       res.render("blogs/show",{post: foundPost});
     }
