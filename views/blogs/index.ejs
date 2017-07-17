@@ -2,7 +2,9 @@
 
 <div class="section">
 <p>
-  <a class="btn-floating btn-large blue pull-right" href="/blogs/new"><i class="fa fa-plus-circle"></i></a>
+  <% if(currentUser && currentUser.isAdmin){ %>
+    <a class="btn-floating btn-large blue pull-right" href="/blogs/new"><i class="fa fa-plus-circle"></i></a>
+  <% } %>  
   <h4>Recent Blogs</h4>
   <hr>
 </p>
