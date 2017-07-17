@@ -2,10 +2,11 @@ var express = require("express");
 var router  = express.Router({mergeParams: true});
 var Post = require("../models/posts");
 var Comment = require("../models/comments");
+var middleware = require("../middleware");
 
 
 // Comments - Create
-router.post("/", function(req,res){
+router.post("/", middleware.isLoggedIn,function(req,res){
   Post.findById(req.params.id, function(err,post){
     if (err){
       req.flash("error","Something Went Wrong!");
