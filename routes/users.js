@@ -3,6 +3,7 @@ var express = require("express");
 var router  = express.Router({mergeParams: true});
 var passport = require('passport');
 var User = require("../models/users");
+var middleware = require("../middleware");
 
 
 // ============
@@ -47,6 +48,17 @@ router.get("/logout",function(req,res){
   req.logout();
   req.flash("success","You Have Successfully Logged Out");
   res.redirect("/");
+});
+
+// User Profile Page
+router.get("/profile/:id", middleware.isUserUser, function(req,res){
+  User.findById(req.params.id, function(err,foundUser){
+    if (err){
+      res.render('errorPages/blogNotFound');
+    } else{
+      res.render("users/show",{user: foundUser});
+    }
+  });
 });
 
 router.get('*', function(req, res) {

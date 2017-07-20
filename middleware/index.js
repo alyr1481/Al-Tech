@@ -43,4 +43,13 @@ middlewareObj.isAdmin = function(req,res,next){
   res.redirect("back");
 };
 
+// Checks That Requested User is indeed the logged in user
+middlewareObj.isUserUser = function(req,res,next){
+  if(req.isAuthenticated() && (req.params.id === req.user.id)){
+    return next();
+  }
+  req.flash("error", "You Don't Have Permission to do that!");
+  res.redirect("back");
+};
+
 module.exports = middlewareObj;
