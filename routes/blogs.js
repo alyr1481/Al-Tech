@@ -4,6 +4,7 @@ var express = require("express");
 var router  = express.Router({mergeParams: true});
 var Post = require("../models/posts");
 var PostType = require("../models/postTypes");
+var middleware = require("../middleware");
 var fs = require("fs");
 var AWS = require('aws-sdk');
 var multer = require("multer");
@@ -40,7 +41,7 @@ router.get("/",function(req,res){
 
 
 // New Posts Page
-router.get("/new",function(req,res){
+router.get("/new",middleware.isAdmin,function(req,res){
   PostType.find({},function(err,allpostTypes){
     if (err){
       console.log(err);
@@ -51,7 +52,7 @@ router.get("/new",function(req,res){
 });
 
 // Create Route
-router.post("/",upload.array('imageFile',1), function(req,res,next){
+router.post("/",middleware.isAdmin,upload.array('imageFile',1), function(req,res,next){
   PostType.findOne({ 'name': req.body.post.postType },'_id name color icon',function(err,foundPostType){
     if (err){
       console.log(err);
@@ -85,7 +86,7 @@ router.get("/:id",function(req,res){
 });
 
 // Edit Route
-router.get("/:id/edit",function(req,res){
+router.get("/:id/edit",middleware.isAdmin,function(req,res){
   Post.findById(req.params.id).populate("postType").exec(function(err,foundPost){
     PostType.find({},function(err,allpostTypes){
       res.render("blogs/edit",{post:foundPost, allpostTypes: allpostTypes});
@@ -94,7 +95,7 @@ router.get("/:id/edit",function(req,res){
 });
 
 // Update Route
-router.put("/:id",upload.array('imageFile',1),function(req,res,next){
+router.put("/:id",middleware.isAdmin,upload.array('imageFile',1),function(req,res,next){
   PostType.findOne({ 'name': req.body.post.postType },'_id name color icon',function(err,foundPostType){
     if (err){
       console.log(err);
@@ -118,7 +119,7 @@ router.put("/:id",upload.array('imageFile',1),function(req,res,next){
 
 
 // Delete Route
-router.delete("/:id", function(req,res){
+router.delete("/:id", middleware.isAdmin,function(req,res){
   if (req.body.verify === req.body.postTitle){
     Post.findByIdAndRemove(req.params.id, function(err){
       if(err){

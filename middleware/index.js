@@ -25,11 +25,21 @@ middlewareObj.checkCommentOwnership = function(req, res, next) {
   }
 };
 
+// Checks if a User is Logged In
 middlewareObj.isLoggedIn = function(req,res,next){
   if(req.isAuthenticated()){
     return next();
   }
   req.flash("error", "You Need to be Logged In to do That");
+  res.redirect("back");
+};
+
+// Checks of Current User is an Admin
+middlewareObj.isAdmin = function(req,res,next){
+  if(req.isAuthenticated() && req.user.isAdmin){
+    return next();
+  }
+  req.flash("error", "You Don't Have Permission to do that!");
   res.redirect("back");
 };
 
