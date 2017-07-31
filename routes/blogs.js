@@ -96,7 +96,6 @@ router.get("/:id/edit",middleware.isAdmin,function(req,res){
 
 // Update Route
 router.put("/:id",middleware.isAdmin,upload.array('imageFile',1),function(req,res,next){
-  console.log(req.body.post);
   PostType.findOne({ 'name': req.body.post.postType },'_id name color icon',function(err,foundPostType){
     if (err){
       console.log(err);
