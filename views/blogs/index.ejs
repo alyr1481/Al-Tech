@@ -4,39 +4,43 @@
 <p>
   <% if(currentUser && currentUser.isAdmin){ %>
     <a class="btn-floating btn-large blue pull-right" href="/blogs/new"><i class="fa fa-plus-circle"></i></a>
-  <% } %>  
+  <% } %>
   <h4>Recent Blogs</h4>
   <hr>
 </p>
 </div>
 
 <% posts.reverse().forEach(function(post){ %>
-<div class="card blogs-index-card">
-<div class="row">
-  <div class="col-md-6 mb-r" style="margin-bottom:0px !important;">
-      <div class="view overlay hm-white-slight imagePadding">
-      <%if (post.imageFile){ %>
-        <span class="imageHelper"><img src="<%=post.imageFile%>" alt="First sample image"></span>
-      <%} else {%>
-        <span class="imageHelper"><img src="<%=post.imageURL%>" alt="First sample image"></span>
-      <%}%>
-      <a href="/blogs/<%=post.id%>">
-        <div class="mask waves-effect waves-light"></div>
-      </a>
+  <%if(post.status === "Live" || currentUser && currentUser.isAdmin){%>
+    <div class="card blogs-index-card">
+    <div class="row">
+      <div class="col-md-6 mb-r" style="margin-bottom:0px !important;">
+          <div class="view overlay hm-white-slight imagePadding">
+          <%if (post.imageFile){ %>
+            <span class="imageHelper"><img src="<%=post.imageFile%>" alt="First sample image"></span>
+          <%} else {%>
+            <span class="imageHelper"><img src="<%=post.imageURL%>" alt="First sample image"></span>
+          <%}%>
+          <a href="/blogs/<%=post.id%>">
+            <div class="mask waves-effect waves-light"></div>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6" style="padding-top:15px; margin-bottom=0px !important;">
+        <div class="vert-center">
+          <a href="" style="color:<%=post.postType.color%>"><h5><i class="fa fa-<%=post.postType.icon%>" aria-hidden="true"></i> <%=post.postType.name%></h5></a>
+          <h4><%=post.title%></h4>
+          <p class="blogs-index-intro" style="padding-right:15px;"><%-post.intro%></p>
+          <p>by <a><strong><%=post.author%></strong></a>, 26/08/2016</p>
+          <a class="btn btn-primary" href="/blogs/<%=post.id%>">Read More</a>
+          <%if (post.status != "Live"){%>
+            <h3 style="display: inline;"><span class="badge red">Not Live</span></h3>
+          <%}%>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="col-md-6" style="padding-top:15px; margin-bottom=0px !important;">
-    <div class="vert-center">
-      <a href="" style="color:<%=post.postType.color%>"><h5><i class="fa fa-<%=post.postType.icon%>" aria-hidden="true"></i> <%=post.postType.name%></h5></a>
-      <h4><%=post.title%></h4>
-      <p class="blogs-index-intro" style="padding-right:15px;"><%-post.intro%></p>
-      <p>by <a><strong><%=post.author%></strong></a>, 26/08/2016</p>
-      <a class="btn btn-primary" href="/blogs/<%=post.id%>">Read more</a>
-      <p></p>
     </div>
-  </div>
-</div>
-</div>
+  <%};%>
 <%});%>
 
 <% include ../partials/footer %>
