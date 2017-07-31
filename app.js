@@ -90,7 +90,7 @@ app.use('/services', serviceRoutes);
 //     console.log('Message %s sent: %s', info.messageId, info.response);
 // });
 
-// Page That Gets Loaded if cannot get the URL etc etc. (To Repalce with custom 404 screen!)
+// Page That Gets Loaded if cannot get the URL etc etc.
 app.get('*', function(req, res) {
     res.render('errorPages/notFound');
 });

@@ -15,10 +15,25 @@
     });</script>
 
 <form action="/blogs/<%= post._id %>?_method=PUT" method="post" enctype="multipart/form-data">
-  <div class="form-group">
-    <label for="author">Author</label>
-    <input type="text" class="form-control" id="author" value="<%=post.author%>" name=post[author]>
-  </div>
+  <div class="row">
+    <div class="col-md-11">
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" class="form-control" id="author" value="<%=post.author%>" name=post[author]>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="form-group">
+        <div class="switch" style="padding-top: 25px; padding-left:10px;">
+          <label>Published</label>
+          <label>
+            <input type="checkbox" value="<%=post.temp%>" name="post[temp]">
+            <span class="lever"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>  
   <div class="form-group">
     <label for="posttitle">Post Title</label>
     <input type="text" class="form-control" id="posttitle" value="<%=post.title%>" name=post[title]>

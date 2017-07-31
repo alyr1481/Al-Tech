@@ -6,6 +6,8 @@ var postSchema = new mongoose.Schema({
    imageFile: String,
    content: String,
    author: String,
+   postLive: {type: Boolean, default: false},
+   temp: String,
    postType:{
       type: mongoose.Schema.Types.ObjectId,
       ref: "PostType"

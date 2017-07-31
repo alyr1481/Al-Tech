@@ -1,7 +1,8 @@
 <% include ../partials/header %>
 
 <script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
-    <script>tinymce.init({
+  <script>
+    tinymce.init({
       selector:'textarea',
       menubar: false,  // removes the menubar
       height: 500,
@@ -12,7 +13,8 @@
         'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
         'save table contextmenu directionality emoticons template paste textcolor'
       ],
-    });</script>
+    });
+  </script>
 
 <form action="/blogs" method="post" enctype="multipart/form-data">
   <div class="form-group">
@@ -58,7 +60,7 @@
 
   <div class="form-group">
     <label for="type">Post Type</label>
-    <select class="form-control" id="type" name="post[postType]">
+    <select class="form-control mdb-select" id="type" name="post[postType]">
       <% allpostTypes.forEach(function(allpostTypes){ %>
       <option><%=allpostTypes.name%></option>
       <%});%>
