@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-  </div>  
+  </div>
   <div class="form-group">
     <label for="posttitle">Post Title</label>
     <input type="text" class="form-control" id="posttitle" value="<%=post.title%>" name=post[title]>
@@ -74,7 +74,7 @@
 
   <div class="form-group">
     <label for="type">Post Type</label>
-    <select class="form-control" id="type" name="post[postType]">
+    <select class="mdb-select" id="type" name="post[postType]">
       <% allpostTypes.forEach(function(allpostTypes){ %>
          <p><%=allpostTypes.name%> - <%=post.postType.name%></p>
         <%if (allpostTypes.name==post.postType.name){ %>
