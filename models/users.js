@@ -9,7 +9,8 @@ var UserSchema = new mongoose.Schema({
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   verified: {type: Boolean, default: false},
-  isAdmin: {type: Boolean, default: false}
+  isAdmin: {type: Boolean, default: false},
+  avatar: {type: String, default:"https://s3-eu-west-1.amazonaws.com/al-tech-avatars/picture-default.png"}
 });
 
 UserSchema.plugin(passportLocalMongoose);

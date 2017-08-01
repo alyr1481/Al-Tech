@@ -20,6 +20,11 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="/assets/Al-Tech-LOGO.png" />
 
+    <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/croppie/croppie.css">
+    <script type="text/javascript" src="/js/croppie/croppie.min.js"></script>
+
   </head>
   <body>
 
@@ -52,7 +57,7 @@
             <a class="nav-item nav-link" data-toggle="modal" data-target="#loginModal">Login</a>
             <a class="nav-item nav-link" data-toggle="modal" data-target="#registerModal">Register</a>
         <% } else { %>
-            <a class="nav-item nav-link" href="/users/profile/<%=currentUser._id%>"><%= currentUser.username %></a>
+            <a class="nav-item nav-link" href="/users/profile/<%=currentUser._id%>"><img src="https://s3-eu-west-1.amazonaws.com/al-tech-avatars/picture-default.png" style="max-height:25px"/> <%= currentUser.username %></a>
             <a class="nav-item nav-link" href="/users/logout">Logout</a>
         <% } %>
       </div>

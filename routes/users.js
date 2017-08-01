@@ -4,7 +4,23 @@ var router  = express.Router({mergeParams: true});
 var passport = require('passport');
 var User = require("../models/users");
 var middleware = require("../middleware");
+var AWS = require('aws-sdk');
+var multer = require("multer");
+var multerS3 = require('multer-s3');
 
+// Multer and Amazon S3 Configuration
+var s3 = new AWS.S3();
+var upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'al-tech-avatars',
+        region:"eu-west-2",
+        key: function (req, file, cb) {
+            //console.log(file);
+            cb(null, Date.now() + file.originalname); //use Date.now() for unique file keys
+        }
+    })
+});
 
 // ============
 // Auth Routes
@@ -54,6 +70,18 @@ router.get("/profile/:id", middleware.isUserUser, function(req,res){
       res.render('errorPages/blogNotFound');
     } else{
       res.render("users/show",{user: foundUser});
+    }
+  });
+});
+
+// Update Avatar Route
+router.put("/profile/:id",middleware.isUserUser,upload.array('imageFile',1),function(req,res,next){
+  User.findByIdAndUpdate(req.params.id,req.body.user,function(err,user){
+    if (err){
+      console.log(err);
+      res.redirect("back");
+    } else{
+      res.redirect("/users/profile/"+user.id);
     }
   });
 });
