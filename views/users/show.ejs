@@ -1,5 +1,33 @@
 <% include ../partials/header %>
 
-  <p><%= user.username%></p>
+<div class="row">
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="view">
+                    <%if(user.avatar){%>
+                        <span class="userImageHelper"><img class="img-fluid" src="<%=user.avatar%>"></span>
+                    <%}else{%>
+                        <span class="userImageHelper"><img class="img-fluid" src="https://s3-eu-west-1.amazonaws.com/al-tech-avatars/picture-default.png"></span>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a class="btn btn-primary btn-block" href="">Upload New Avatar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h1><%=user.username%> - Profile Page</h1>
+    </div>
+</div>
+  
+
+  
+  
+  
+  
 
 <% include ../partials/footer %>
