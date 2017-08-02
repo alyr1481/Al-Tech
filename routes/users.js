@@ -99,6 +99,28 @@ router.put("/profile/:id/bio",middleware.isUserUser, function(req,res,next){
   });
 });
 
+// Change Password Route
+router.put("/profile/:id/changepwd",middleware.isUserUser,function(req,res,next){
+  User.findById(req.params.id, function(err,foundUser){
+    if(err){
+      console.log(err);
+      req.flash("error","Something Went Wrong!");
+      res.redirect("back");
+    }else{
+      if(req.body.user.password===req.body.user.passwordConfirm){
+        foundUser.setPassword(req.body.user.password, function(){
+          foundUser.save();
+          req.flash("success","Password Changed Successfully");
+          res.redirect("back");
+        });
+      }else{
+        req.flash("error","Password's Don't Match!");
+        res.redirect("back");
+      }
+    }
+  });
+});
+
 router.get('*', function(req, res) {
     res.render('errorPages/notFound');
 });
