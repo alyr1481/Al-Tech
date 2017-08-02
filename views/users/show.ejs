@@ -6,7 +6,9 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="view userAvatar">
-                  <span class="userImageHelper"><img src="<%=user.avatar%>"></span>
+                  <div id="avatarWrapper">
+                    <img src="<%=user.avatar%>" style="object-fit: contain">
+                  </div>
                 </div>
             </div>
         </div>

@@ -76,6 +76,7 @@ router.get("/profile/:id", middleware.isUserUser, function(req,res){
 
 // Update Avatar Route
 router.put("/profile/:id",middleware.isUserUser,upload.array('imageFile',1),function(req,res,next){
+  req.body.user.avatar="https://s3-eu-west-1.amazonaws.com/al-tech-avatars/"+req.files[0].key;
   User.findByIdAndUpdate(req.params.id,req.body.user,function(err,user){
     if (err){
       console.log(err);

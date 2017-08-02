@@ -8,23 +8,26 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title w-100" id="myModalLabel">Crop & Zoom Avatar</h4>
+        <h4 class="modal-title w-100" id="myModalLabel">Upload New Avatar</h4>
       </div>
       <!--Body-->
       <div class="modal-body">
-        <form action="/" method="POST" class="delete-form" id="delete-form">
-            <div class="form-group">
-              <img id="userAvatar" src="https://s3-eu-west-1.amazonaws.com/al-tech-avatars/picture-default.png" alt="">
-              <script>
-                $('#userAvatar').croppie();
-              </script>
-            </div>
+        <form action="/users/profile/<%=user.id%>?_method=PUT" method="post" enctype="multipart/form-data" id="avatarUploadForm">
+          <div class="file-field">
+          <div class="btn btn-primary btn-sm ">
+            <span>Choose file</span>
+            <input type="file" id="fileupload" name="imageFile">
+          </div>
+          <div class="file-path-wrapper" style="margin-top:18px;">
+            <input class="file-path validate" type="text" placeholder="Upload your file" name="user[avatar]">
+          </div>
+        </div>
       </div>
       <!--Footer-->
       <div class="modal-footer">
-          <a class="btn btn-danger btn-block" href="javascript:void()" onclick="document.getElementById('delete-form').submit();">
+          <a class="btn btn-success btn-block" href="javascript:void()" onclick="document.getElementById('avatarUploadForm').submit();">
             <i class="fa fa-close"></i>
-            <span class="hidden-md-down"> Delete Post</span>
+            <span class="hidden-md-down"> Upload Avatar</span>
           </a>
         </form>
       </div>
