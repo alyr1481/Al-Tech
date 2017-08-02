@@ -64,15 +64,27 @@ body {
 }
 
 .userImageHelper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
+    width:100%; 
+    height: auto
 }
 
 .imagePadding{
   padding-top: 20px;
   padding-bottom: 20px;
   width: 100%;
+}
+
+.userAvatar{
+  height: 350px;
+  width: 350px;
+}
+
+.userBio{
+  height: 230px;
+}
+
+.navbarAvatar{
+  max-height: 25px;
 }
 
 #scrollable-content {
