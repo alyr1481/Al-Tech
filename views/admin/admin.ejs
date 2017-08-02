@@ -1,7 +1,7 @@
 <% include ../partials/header %>
-
+<div class="row">
   <div class="col-md-4">
-    <div class="card" style="padding-top:15px; padding-bottom:15px;">
+    <div class="card" style="padding-top:15px; padding-bottom:15px; margin-left:10px;">
       <div class="container">
         <h3 style="padding-bottom: 10px;">List of Post Categories</h3>
         <a class="btn btn-default btn-block" data-toggle="modal" data-target="#newPostType">
@@ -73,8 +73,18 @@
       </div>
     </div>
   </div>
-
-
+  
+  <div class="col-md-8">
+    <div class="card" style="padding-top:15px; padding-bottom:15px; margin-right:10px;">
+      <div class="container">
+        <h3 style="padding-bottom: 10px;">List of Users</h3>
+        <a class="btn btn-default btn-block" data-toggle="modal" data-target="#newPostType">
+        <i class="fa fa-plus"></i>
+        <span class="hidden-md-down ">New Post Category</span>
+      </a>
+    </div>
+  </div>
+</div>
 
   <!-- Modal -->
   <div class="modal fade" id="newPostType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
