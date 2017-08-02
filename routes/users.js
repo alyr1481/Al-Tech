@@ -87,6 +87,18 @@ router.put("/profile/:id",middleware.isUserUser,upload.array('imageFile',1),func
   });
 });
 
+// Update Bio Route
+router.put("/profile/:id/bio",middleware.isUserUser, function(req,res,next){
+  User.findByIdAndUpdate(req.params.id,req.body.user,function(err,user){
+    if (err){
+      console.log(err);
+      res.redirect("back");
+    } else{
+      res.redirect("/users/profile/"+user.id);
+    }
+  });
+});
+
 router.get('*', function(req, res) {
     res.render('errorPages/notFound');
 });

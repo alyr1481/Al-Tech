@@ -3,6 +3,14 @@ body {
     padding-top: 100px;
 }
 
+html {
+  overflow:   scroll;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
 .card-link{
   color: black;
 }
@@ -80,7 +88,7 @@ body {
 }
 
 .userBio{
-  height: 230px;
+  height: 223px;
 }
 
 .navbarAvatar{
@@ -90,6 +98,10 @@ body {
 #scrollable-content {
   height: 180px;
   /*overflow: auto;*/
+  overflow-y: scroll;
+}
+
+#scrollable-content-noHeight {
   overflow-y: scroll;
 }
 

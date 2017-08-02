@@ -7,7 +7,7 @@
             <div class="col-xs-12">
                 <div class="view userAvatar">
                   <div id="avatarWrapper">
-                    <img src="<%=user.avatar%>" style="object-fit: contain">
+                     <img src="<%=user.avatar%>" style="object-fit: contain">
                     <script type="text/javascript" src="/js/custom/avatarImageHeight.js"></script>
                   </div>
                 </div>
@@ -25,9 +25,13 @@
         </div>
         <div class="row" style="margin-top:30px;">
           <div class="col-md-12" style="padding-left: 0px; padding-right:0px;">
-            <label for="bio"><%=user.username%> - Biography</label>
-            <textarea id="bio" class="userBio" disabled><%=user.bio%></textarea>
-            <a class="btn btn-primary btn-block" href="">Edit <%=user.username%>'s Bio</a>
+            <label for="bio">Biography</label>
+            <div id="scrollable-content-noHeight">
+              <div class="userBio">
+                <p><%-user.bio%></p>
+              </div>
+            </div>  
+            <a class="btn btn-primary btn-block" href="" data-toggle="modal" data-target="#editBio">Edit <%=user.username%>'s Bio</a>
           </div>
         </div>
     </div>
@@ -42,6 +46,7 @@
 </div>
 
 
-<% include ../partials/users/changeAvatar %>
+<% include ../partials/users/changeAvatarModal %>
+<% include ../partials/users/editBioModal %>
 <% include ../partials/container_footer %>
 <% include ../partials/footer %>
