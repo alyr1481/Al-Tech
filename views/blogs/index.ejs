@@ -35,7 +35,7 @@
           <p>by <a><strong><%=post.author%></strong></a>, 26/08/2016</p>
           <a class="btn btn-primary" href="/blogs/<%=post.id%>">Read More</a>
           <%if (post.status != "Live"){%>
-            <h3 style="display: inline;"><span class="badge red">Not Live</span></h3>
+            <a class="btn btn-danger disabled bright-disabled">NOT PUBLISHED</a>
           <%}%>
         </div>
       </div>

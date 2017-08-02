@@ -95,6 +95,10 @@ html {
   max-height: 25px;
 }
 
+.bright-disabled { 
+  background-color: red !important;
+}
+
 #scrollable-content {
   height: 180px;
   /*overflow: auto;*/
