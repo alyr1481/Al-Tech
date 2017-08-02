@@ -26,43 +26,6 @@
 </div>
 
 
-
-<!-- Modal -->
-<div class="modal fade" id="changeAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <!--Content-->
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title w-100" id="myModalLabel">Crop & Zoom Avatar</h4>
-      </div>
-      <!--Body-->
-      <div class="modal-body">
-        <form action="/" method="POST" class="delete-form" id="delete-form">
-            <div class="form-group">
-              <img id="userAvatar" src="https://s3-eu-west-1.amazonaws.com/al-tech-avatars/picture-default.png" alt="">
-              <script>
-                $('#userAvatar').croppie();
-              </script>
-            </div>
-      </div>
-      <!--Footer-->
-      <div class="modal-footer">
-          <a class="btn btn-danger btn-block" href="javascript:void()" onclick="document.getElementById('delete-form').submit();">
-            <i class="fa fa-close"></i>
-            <span class="hidden-md-down"> Delete Post</span>
-          </a>
-        </form>
-      </div>
-    </div>
-    <!--/.Content-->
-  </div>
-</div>
-<!-- Modal -->
-
-
+<% include ../partials/users/changeAvatar %>
 <% include ../partials/container_footer %>
 <% include ../partials/footer %>
