@@ -99,6 +99,10 @@ html {
   background-color: red !important;
 }
 
+.inlineEl{
+  display: inline;
+}
+
 #scrollable-content {
   height: 180px;
   /*overflow: auto;*/
