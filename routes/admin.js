@@ -1,6 +1,7 @@
 var express = require("express");
 var router  = express.Router({mergeParams: true});
 var PostType = require("../models/postTypes");
+var User = require("../models/users");
 var middleware = require("../middleware");
 
 // Root Admin Page
@@ -9,7 +10,13 @@ router.get("/", middleware.isAdmin,function(req,res){
     if (err){
       console.log(err);
     } else{
-      res.render("admin/admin",{postType: postType});
+      User.find({},function(err,user){
+        if (err){
+          console.log(err);
+        }else{
+          res.render("admin/admin",{postType: postType, user: user});
+        }
+      });
     }
   });
 });

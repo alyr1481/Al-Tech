@@ -1,0 +1,43 @@
+<!-- Modal -->
+<div class="modal fade" id="newPostType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+        <h4 class="modal-title w-100" id="myModalLabel">New Post Category</h4>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <form action="/admin/post-type" method="POST" id="newPostType-form">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="postName">Name</label>
+              <input type="text" class="form-control" name="postType[name]" style="text-align: center;" id="postName">
+            </div>
+            <div class="form-group">
+              <label for="postIcon">Icon</label>
+              <input type="text" class="form-control" name="postType[icon]" style="text-align: center;" id="postIcon">
+            </div>
+            <div class="form-group">
+              <label for="postColor">Colour (Hex Code)</label>
+              <input type="text" class="form-control" name="postType[color]" style="text-align: center;" id="postColor">
+            </div>
+          </div>
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <a class="btn btn-default btn-block" href="javascript:void()" onclick="document.getElementById('newPostType-form').submit();">
+          <i class="fa fa-plus"></i>
+          <span class="hidden-md-down"> Add Category</span>
+        </a>
+        </form>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!-- Modal -->
