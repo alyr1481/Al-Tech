@@ -103,6 +103,10 @@ html {
   display: inline;
 }
 
+.noMargin{
+  margin: 0px !important;
+}
+
 #scrollable-content {
   height: 180px;
   /*overflow: auto;*/

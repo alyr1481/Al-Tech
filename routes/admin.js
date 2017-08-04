@@ -57,4 +57,16 @@ router.put("/post-type/:id", middleware.isAdmin,function(req,res){
   });
 });
 
+// User Edit Route
+router.put("/userupdate/:id", middleware.isAdmin,function(req,res){
+  User.findByIdAndUpdate(req.params.id,req.body.user,function(err,user){
+    if (err){
+      console.log(err);
+      res.redirect("back");
+    } else{
+      res.redirect("/admin");
+    }
+  });
+});
+
 module.exports = router;
