@@ -6,7 +6,7 @@ var postSchema = new mongoose.Schema({
    imageFile: String,
    content: String,
    author: String,
-   status: {type: String, default: "In Creation"},
+   status: {type: Boolean, default: false},
    postType:{
       type: mongoose.Schema.Types.ObjectId,
       ref: "PostType"

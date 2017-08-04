@@ -12,7 +12,7 @@
 </div>
 
 <% posts.reverse().forEach(function(post){ %>
-  <%if(post.status === "Live" || currentUser && currentUser.isAdmin){%>
+  <%if(post.status || currentUser && currentUser.isAdmin){%>
     <div class="card blogs-index-card">
     <div class="row">
       <div class="col-md-6 mb-r" style="margin-bottom:0px !important;">
@@ -34,7 +34,7 @@
           <p class="blogs-index-intro" style="padding-right:15px;"><%-post.intro%></p>
           <p>by <a><strong><%=post.author%></strong></a>, 26/08/2016</p>
           <a class="btn btn-primary" href="/blogs/<%=post.id%>">Read More</a>
-          <%if (post.status != "Live"){%>
+          <%if (!post.status){%>
             <a class="btn btn-danger disabled bright-disabled">NOT PUBLISHED</a>
           <%}%>
         </div>

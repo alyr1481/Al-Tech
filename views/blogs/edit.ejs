@@ -27,12 +27,12 @@
       <div class="form-group">
         <label for="status" style="padding-bottom: 6px;">Published Status</label>
         <select class="mdb-select" id="status" name="post[status]">
-          <%if (post.status=="Live"){ %>
-            <option selected>Live</option>
-            <option>In Creation</option>
+          <%if (post.status){ %>
+            <option selected value=true>Live</option>
+            <option value=false>In Creation</option>
           <%}else{ %>
-            <option>Live</option>
-            <option selected>In Creation</option>
+            <option value=true>Live</option>
+            <option selected value=false>In Creation</option>
           <%}%>
         </select>
       </div>
