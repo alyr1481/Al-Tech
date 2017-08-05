@@ -69,4 +69,17 @@ router.put("/userupdate/:id", middleware.isAdmin,function(req,res){
   });
 });
 
+// Delete User Route
+router.delete("/userDelete/:id", middleware.isAdmin,function(req,res){
+  User.findByIdAndRemove(req.params.id, function(err){
+    if(err){
+      req.flash("error",err);
+      res.redirect("/admin");
+    } else{
+      req.flash("success","User Has Been Successfully Removed!");
+      res.redirect("/admin");
+    }
+  });
+});
+
 module.exports = router;

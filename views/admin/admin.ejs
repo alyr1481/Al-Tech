@@ -42,85 +42,63 @@
         <hr style="margin-bottom: 0px;">
         <div id="scrollable-content" style="height:197px;">
           <ul>
-          <% user.forEach(function(user){ %>
-            <div class="card" style="padding-top:8px;">
-              <li style="padding-right: 10px; height:105px;">
-                <div class="row">
-                  <div class="col-md-5">
-                    <div style="margin-top: 2px;"></div>
-                    <div class="comments-list inlineEl" style="padding-left: 10px; padding-right: 30px;"><img src="<%=user.avatar%>" style="display: inline; max-width: 80px;" ></div>
-                    <div class="inlineEl">
-                      <h5 class="inlineEl">
-                        <a><%=user.username%></a>
-                      </h5>
-                    </div>
+            <%user.forEach(function(user){%>
+            <div class="card" style="padding-top:15px; padding-bottom:8px;">
+              <li>
+               <div class="row">
+                <div class="col-md-5">
+                  <div class="comments-list inlineEl" style="padding-left: 10px; padding-right: 30px;"><img src="<%=user.avatar%>" style="display: inline; max-width: 80px;" ></div>
+                  <div class="inlineEl">
+                    <h5 class="inlineEl">
+                      <a><%=user.username%></a>
+                    </h5>
                   </div>
-                  <form style="width: 300px"class="form-inline noMargin" action="/admin/userupdate/<%= user._id %>?_method=PUT" method="post" id="userEdit-form-<%=user.id%>">
+                </div>
+                <div class="col-md-4">
+                  <form class="form-inline noMargin" action="/admin/userupdate/<%= user._id %>?_method=PUT" method="post" id="userEdit-form-<%=user.id%>">
                     <div class="row">
-                      <div class="col-md-2" style="width: 850px;">
-                        <div class="row inlineEl noMargin">
-                          <div class="col-xs-12">
-                            <p>Admin</p>
-                          </div>  
-                        </div>
-                        <div class="row inlineEl noMargin">
-                          <div class="col-xs-12">
-                            <select class="mdb-select noMargin" name="user[isAdmin]">
-                              <%if(user.isAdmin){%>
-                                <option selected value=true>True</option>
-                                <option value=false>False</option>
-                              <%}else{%>
-                                <option value=true>True</option>
-                                <option selected value=false>False</option>
-                              <%}%> 
-                            </select>
-                          </div>  
-                        </div>                    
+                      <div class="col-md-6">
+                        <p>Admin</p>
+                        <select class="mdb-select noMargin" name="user[isAdmin]">
+                          <%if(user.isAdmin){%>
+                            <option selected value=true>True</option>
+                            <option value=false>False</option>
+                            <%}else{%>
+                            <option value=true>True</option>
+                            <option selected value=false>False</option>
+                          <%}%>
+                        </select>
                       </div>
-                      <div class="col-md-2">
-                        <div class="row inlineEl noMargin">
-                          <div class="col-xs-12">
-                            <p>Moderator</p>
-                          </div>  
-                        </div>
-                        <div class="row inlineEl noMargin">
-                          <div class="col-xs-12">
-                            <select class="mdb-select noMargin" name="user[isModerator]">
-                              <%if(user.isModerator){%>
-                                <option selected value=true>True</option>
-                                <option value=false>False</option>
-                              <%}else{%>
-                                <option value=true>True</option>
-                                <option selected value=false>False</option>
-                              <%}%>  
-                            </select>
-                          </div>  
-                        </div>                    
+                      <div class="col-md-6">
+                        <p>Moderator</p>
+                        <select class="mdb-select noMargin" name="user[isModerator]">
+                          <%if(user.isModerator){%>
+                            <option selected value=true>True</option>
+                            <option value=false>False</option>
+                            <%}else{%>
+                            <option value=true>True</option>
+                            <option selected value=false>False</option>
+                          <%}%>
+                        </select>
                       </div>
                     </div>
                   </form>
-                  <div class="col-md-3 inlineEl">
-                    <div class="row inlineEl" style="margin:0px;">
-                      <div class="col-xs-12">
-                        <div style="vertical-align: middle; padding:0px;margin:0px;">
-                          <a class="btn btn-warning btn-block" onclick="document.getElementById('userEdit-form-<%=user.id%>').submit();"><i class="fa fa-cogs"></i> Update User</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row" style="margin:0px; height:5px;"></div>
-                     <div class="row inlineEl" style="margin:0px;">
-                      <div class="col-xs-12">
-                        <div style="vertical-align: middle; padding:0px; margin:0px;">
-                          <a class="btn btn-danger btn-block"><i class="fa fa-close"></i> Delete User</a>
-                        </div>
-                      </div>
-                    </div>                   
+                </div>
+                <div class="col-md-3">
+                  <div style="vertical-align: middle; padding:0px; margin:0px;">
+                    <a class="btn btn-warning btn-block" onclick="document.getElementById('userEdit-form-<%=user.id%>').submit();"><i class="fa fa-cogs"></i> Update User</a>
+                    <%if(user.id===currentUser.id){%>
+                      <a class="btn btn-danger btn-block disabled" onclick="document.getElementById('deleteUser-form-<%=user.id%>').submit();"><i class="fa fa-close"></i> Delete User</a>
+                    <%}else{%>
+                      <a class="btn btn-danger btn-block" onclick="document.getElementById('deleteUser-form-<%=user.id%>').submit();"><i class="fa fa-close"></i> Delete User</a>
+                    <%}%>
                   </div>
                 </div>
-                <div style="margin-bottom: 14px;"></div>
+               </div>
               </li>
             </div>
-          <%});%>
+            <form action="/admin/userDelete/<%=user._id%>?_method=DELETE" method="POST" id="deleteUser-form-<%=user.id%>"></form>
+            <%});%>
           </ul>
         </div>
         <hr style="margin-top: 0px;">
