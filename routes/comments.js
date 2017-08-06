@@ -25,7 +25,7 @@ router.post("/", middleware.isLoggedIn,function(req,res){
           post.comments.push(comment);
           post.save();
           req.flash("success", "Succesfully Added Comment");
-          res.redirect("back");
+          res.redirect("/blogs/"+req.params.id);
         }
       });
     }
