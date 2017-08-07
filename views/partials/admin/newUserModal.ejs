@@ -1,0 +1,48 @@
+<!-- Modal -->
+<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+  <div class="modal-dialog modal-lg" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Edit Your Bio</h4>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <form action="/admin/newuser" method="post" id="newUserForm">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name=username>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" name=email>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name=password>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" name=confirmPassword>
+          </div>
+         </form>
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+          <a class="btn btn-success btn-block" href="javascript:void()" onclick="document.getElementById('newUserForm').submit();" id="registerButton">
+            <i class="fa fa-plus"></i>
+            <span class="hidden-md-down"> Add User</span>
+          </a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<script type="text/javascript" src="/js/custom/fieldTester.js"></script>
+
+<!-- Modal -->

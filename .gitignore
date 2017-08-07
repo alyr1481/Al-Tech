@@ -1,3 +1,5 @@
 node_modules/
 .env
 s3_config.json
+.gitignore
+.DS_Store

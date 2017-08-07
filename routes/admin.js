@@ -3,6 +3,7 @@ var router  = express.Router({mergeParams: true});
 var PostType = require("../models/postTypes");
 var User = require("../models/users");
 var middleware = require("../middleware");
+var passport = require('passport');
 
 // Root Admin Page
 router.get("/", middleware.isAdmin,function(req,res){
@@ -80,6 +81,26 @@ router.delete("/userDelete/:id", middleware.isAdmin,function(req,res){
       res.redirect("/admin");
     }
   });
+});
+
+// Add New User
+router.post("/newuser",function(req,res){
+  if (req.body.password === req.body.confirmPassword){
+    var newUser = new User({username: req.body.username, email: req.body.email});
+    User.register(newUser,req.body.password, function(err, user){
+      if (err){
+        req.flash("error", err.message);
+        console.log(err);
+        req.flash("error",err);
+        res.redirect("/");
+      }
+      req.flash("success","New User Succesfully Added");
+      res.redirect("/admin");
+    });
+  } else{
+    req.flash("error", "Password's Do Not Match!");
+    res.redirect("/admin");
+  }
 });
 
 module.exports = router;
