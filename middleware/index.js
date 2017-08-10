@@ -60,7 +60,6 @@ middlewareObj.isPostLive = function(req,res,next){
       return res.render("back");
     }
     if (foundPost.status){
-      console.log("2.5");
       return next();
     }
     if (req.isAuthenticated() && req.user.isAdmin){
