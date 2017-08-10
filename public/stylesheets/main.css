@@ -107,6 +107,24 @@ html {
   margin: 0px !important;
 }
 
+.tenContainer{
+  margin-left:10px;
+  margin-right:10px;
+}
+
+.recentPostCard{
+ padding-top:10px;  
+ padding-bottom:10px;  
+}
+
+.removeAColor{
+  color: inherit;
+}
+
+.homeRecentPostPadding{
+  padding-bottom:20px;
+}
+
 #scrollable-content {
   height: 180px;
   /*overflow: auto;*/
