@@ -75,7 +75,7 @@ router.post("/",middleware.isAdmin,upload.array('imageFile',1), function(req,res
 
 
 // Show Page
-router.get("/:id",function(req,res){
+router.get("/:id",middleware.isPostLive,function(req,res){
   Post.findById(req.params.id).populate("comments").exec(function(err,foundPost){
     if (err){
       res.render('errorPages/blogNotFound');

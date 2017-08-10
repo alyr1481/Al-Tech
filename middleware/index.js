@@ -52,4 +52,23 @@ middlewareObj.isUserUser = function(req,res,next){
   res.redirect("back");
 };
 
+// Checks if the post is live, if it isn't then it checks for admin
+middlewareObj.isPostLive = function(req,res,next){
+  Post.findById(req.params.id, function(err,foundPost){
+    if (err){
+      console.log(err);
+      return res.render("back");
+    }
+    if (foundPost.status){
+      console.log("2.5");
+      return next();
+    }
+    if (req.isAuthenticated() && req.user.isAdmin){
+      return next();
+    }
+    req.flash("error","You Don't Have Permission to do that!");
+    res.redirect("/blogs");
+  });
+};
+
 module.exports = middlewareObj;
