@@ -10,12 +10,14 @@
   <div class="col-md-3">
    <h3 class="homeRecentPostPadding">Recent Blog Posts</h3>
    <%posts.reverse().slice(0,6).forEach(function(post){%>
-   <div class="card blogs-index-card">
-    <div class="recentPostCard">
-     <a href="" style="color:<%=post.postType.color%>"><h5><i class="fa fa-<%=post.postType.icon%>" aria-hidden="true"></i> <%=post.postType.name%></h5></a>
-     <a href="/blogs/<%=post.id%>" class="removeAColor"><h5><%=post.title%></h5></a>
-    </div>
-   </div>
+    <%if (post.status || currentUser && currentUser.isAdmin){%>
+     <div class="card blogs-index-card">
+      <div class="recentPostCard">
+       <a href="" style="color:<%=post.postType.color%>"><h5><i class="fa fa-<%=post.postType.icon%>" aria-hidden="true"></i> <%=post.postType.name%></h5></a>
+       <a href="/blogs/<%=post.id%>" class="removeAColor"><h5><%=post.title%></h5></a>
+      </div>
+     </div>
+    <%}%>
    <%})%>
   </div>
  </div>
