@@ -66,8 +66,8 @@ app.use('/admin', adminRoutes);
 app.use('/users', userRoutes);
 app.use('/services', serviceRoutes);
 
-
-email.sendServerLive();
+// Send Server Live Email
+// email.sendServerLive();
 
 
 
