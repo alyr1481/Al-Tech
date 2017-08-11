@@ -1,4 +1,3 @@
-
 var express = require("express");
 var router  = express.Router({mergeParams: true});
 var passport = require('passport');
@@ -7,6 +6,9 @@ var middleware = require("../middleware");
 var AWS = require('aws-sdk');
 var multer = require("multer");
 var multerS3 = require('multer-s3');
+var email = require("../email/emailSetup");
+var ejs = require("ejs");
+var fs = require("fs");
 
 // Multer and Amazon S3 Configuration
 var s3 = new AWS.S3();
@@ -99,6 +101,10 @@ router.put("/profile/:id/bio",middleware.isUserUser, function(req,res,next){
   });
 });
 
+// ======================
+// Change Password Routes
+// ======================
+
 // Change Password Route
 router.put("/profile/:id/changepwd",middleware.isUserUser,function(req,res,next){
   User.findById(req.params.id, function(err,foundUser){
@@ -121,6 +127,35 @@ router.put("/profile/:id/changepwd",middleware.isUserUser,function(req,res,next)
   });
 });
 
+// Forgotton Password Route
+router.get("/forgottonpassword", function(req,res){
+  res.render("users/forgottonPassword");
+});
+
+// Forgotton Password Post Route (Handles sendign the reset email etc)
+router.post("/forgottonpassword",function(req,res){
+  User.findOne({'email': req.body.user.email}, function(err,user){
+    if (err || !user){
+      console.log(err);
+      req.flash("error","No User With That Email is Registered on Al-Tech");
+      return res.redirect("/home");
+    }
+    // Change Password Bumf Needs to Go Here!
+    ejs.renderFile("./views/emails/passwordReset.ejs", {user: user}, function (err, data){
+      if (err){
+        return console.log(err);
+      }
+      return email.sendPasswordReset(user, data);
+    });
+    
+    
+    req.flash("success","Please Follow Instructions in the Email you should Receive");
+    res.redirect("/home");
+  });
+});
+
+
+// Error Catchall Page
 router.get('*', function(req, res) {
     res.render('errorPages/notFound');
 });

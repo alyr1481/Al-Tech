@@ -1,5 +1,7 @@
 var nodemailer = require('nodemailer');
 
+var emailObj={};
+
 // Transporter Setup for the service used. (Gmail).
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -9,9 +11,8 @@ var transporter = nodemailer.createTransport({
     }
 });
 
- 
-// Node Mailer Send Live email
-function sendServerLive(){
+// Send Server is Live email
+emailObj.sendServerLive = function sendServerLive(){
  var mailOptions = {
      from: 'hello@alyr.co.uk', // sender address
      to: process.env.PERSONAL_GMAIL_ADDRESS, // list of receivers
@@ -28,7 +29,20 @@ function sendServerLive(){
  });
 };
 
+emailObj.sendPasswordReset = function sendPasswordReset(user, renderHTML){
+ var mailOptions = {
+  from: "'Password Reset' hello@al-tech.co.uk",
+  to: user.email,
+  subject: "Password Reset For Al-Tech",
+  html: renderHTML
+ };
+ 
+ transporter.sendMail(mailOptions, (err, info) => {
+  if (err) {
+   return console.log(err);
+  }
+ });
+}
 
-module.exports = {
- sendServerLive: sendServerLive
-};
+
+module.exports = emailObj;
