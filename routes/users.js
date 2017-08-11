@@ -145,12 +145,10 @@ router.post("/forgottonpassword",function(req,res){
       if (err){
         return console.log(err);
       }
-      return email.sendPasswordReset(user, data);
+      email.sendPasswordReset(user, data);
+      req.flash("success","Please Follow Instructions in the Email you should Receive");
+      res.redirect("/home");
     });
-    
-    
-    req.flash("success","Please Follow Instructions in the Email you should Receive");
-    res.redirect("/home");
   });
 });
 
