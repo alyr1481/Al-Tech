@@ -10,10 +10,10 @@ var express = require("express"),
     LocalStratergy = require('passport-local'),
     methodOverride = require('method-override'),
     session = require('express-session'),
-    // nodemailer = require('nodemailer'),
     Post = require('./models/posts'),
     PostType = require('./models/postTypes'),
-    User = require("./models/users");
+    User = require("./models/users"),
+    email = require("./email/emailSetup");
 
 var blogRoutes = require('./routes/blogs'),
     indexRoutes = require('./routes/index'),
@@ -66,29 +66,10 @@ app.use('/admin', adminRoutes);
 app.use('/users', userRoutes);
 app.use('/services', serviceRoutes);
 
-// Node Mailer Send Live email
-// var transporter = nodemailer.createTransport({
-//     service: 'Gmail',
-//     auth: {
-//         user: process.env.PERSONAL_GMAIL_ADDRESS,
-//         pass: process.env.PERSONAL_GMAIL_PASSWORD
-//     }
-// });
 
-// var mailOptions = {
-//     from: 'hello@alyr.co.uk', // sender address
-//     to: process.env.PERSONAL_GMAIL_ADDRESS, // list of receivers
-//     subject: 'Al-Tech Server Has Started', // Subject line
-//     text: 'Hello world ?', // plain text body
-//     html: '<b>Hello world ?</b>' // html body
-// };
+email.sendServerLive();
 
-// transporter.sendMail(mailOptions, (error, info) => {
-//     if (error) {
-//         return console.log(error);
-//     }
-//     console.log('Message %s sent: %s', info.messageId, info.response);
-// });
+
 
 // Page That Gets Loaded if cannot get the URL etc etc.
 app.get('*', function(req, res) {

@@ -148,3 +148,9 @@ html {
   margin:auto;
   display:block;
 }
+
+#forgottonPassword{
+  font-size: 12px; 
+  text-align: center; 
+  padding-bottom: 15px;
+}

@@ -1,5 +1,7 @@
 </div>
 
+<!--No Point Loading these if there is a user logged in!-->
+<%if(!currentUser){%>
 <!-- Modal -->
 <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -72,17 +74,19 @@
       </div>
       <!--Footer-->
       <div class="modal-footer">
-          <a class="btn btn-default btn-block" href="javascript:void()" onclick="document.getElementById('login-Form').submit();">
-            <i class="fa fa-user"></i>
-            <span class="hidden-md-down"> Login</span>
-          </a>
+        <a class="btn btn-default btn-block" href="javascript:void()" onclick="document.getElementById('login-Form').submit();">
+          <i class="fa fa-user"></i>
+          <span class="hidden-md-down"> Login</span>
+        </a>
         </form>
       </div>
+      <a id="forgottonPassword">Forgotten Password?</a>
     </div>
     <!--/.Content-->
   </div>
 </div>
 <!-- Modal -->
+<%}%>
 
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="/js/tether.min.js"></script>
