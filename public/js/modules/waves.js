@@ -205,27 +205,16 @@
 
             var parent = element.parentNode;
 
-            // If input already have parent just pass through
-            if (parent.tagName.toLowerCase() === 'i' && parent.classList.contains('waves-effect')) {
-                return;
-            }
+            // // If input already have parent just pass through
+            // if (parent.tagName.toLowerCase() === 'i' && parent.classList.contains('waves-effect')) {
+            //     return;
+            // }
 
-            // Put element class and style to the specified parent
-            var wrapper = document.createElement('i');
-            wrapper.className = element.className + ' waves-input-wrapper';
-            element.className = 'waves-button-input';
+            var wrapper = document.createElement('div');
+            wrapper.className = 'waves-input-wrapper';
 
-            // Put element as child
             parent.replaceChild(wrapper, element);
             wrapper.appendChild(element);
-
-            // Apply element color and background color to wrapper
-            var elementStyle = window.getComputedStyle(element, null);
-            var color = elementStyle.color;
-            var backgroundColor = elementStyle.backgroundColor;
-
-            wrapper.setAttribute('style', 'color:' + color + ';background:' + backgroundColor);
-            element.setAttribute('style', 'background-color:rgba(0,0,0,0);');
 
         },
 
@@ -587,8 +576,11 @@
 });
 
 //Initialization
-Waves.attach('.btn, .btn-floating', ['waves-light']);
+Waves.attach('.btn:not(.btn-flat), .btn-floating', ['waves-light']);
+Waves.attach('.btn-flat', ['waves-effect']);
+Waves.attach('.view .mask', ['waves-light']);
 Waves.attach('.waves-light', ['waves-light']);
+Waves.attach('.waves-effect', ['waves-effect']);
 Waves.attach('.navbar-nav a:not(.navbar-brand), .nav-icons li a, .navbar form, .nav-tabs .nav-item', ['waves-light']);
 Waves.attach('.pager li a', ['waves-light']);
 Waves.attach('.pagination .page-item .page-link', ['waves-effect']);

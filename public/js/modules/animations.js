@@ -1,10 +1,24 @@
 // Animations
+$(document).ready(function() {
+    $('.js--triggerAnimation').click(function(e) {
+        e.preventDefault();
+        var anim = $('.js--animations').val();
+        testAnim(anim);
+    });
 
-$(function() {
-  $('.arrow-r').on('click', function() {
-    //Reset all but the current
-    $('.arrow-r').not(this).find('.fa-angle-down').removeClass('rotate-element');
-    //Rotate/reset the clicked one
-    $(this).find('.fa-angle-down').toggleClass('rotate-element');
-  })
-})
+    $('.js--animations').change(function() {
+        var anim = $(this).val();
+        testAnim(anim);
+    });
+    
+    $('.mdb-select').material_select();
+
+    new WOW().init();
+
+});
+
+function testAnim(x) {
+    $('#animationSandbox').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+        $(this).removeClass();
+    });
+};

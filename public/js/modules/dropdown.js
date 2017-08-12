@@ -14,7 +14,7 @@
       inDuration: 300,
       outDuration: 225,
       constrain_width: true, // Constrains width of dropdown to the activator
-      hover: false,
+      hover: true,
       gutter: 0, // Spacing from edge
       belowOrigin: false,
       alignment: 'left'
@@ -298,6 +298,7 @@ var dropdownSelectors = $('.dropdown, .dropup');
         dropdownSelectors.on({
             "show.bs.dropdown": function () {
                 // On show, start in effect
+                $(this).find('.dropdown-menu').first().stop(true, true).fadeIn();
                 var dropdown = dropdownEffectData(this);
                 dropdownEffectStart(dropdown, dropdown.effectIn);
             },
@@ -310,6 +311,8 @@ var dropdownSelectors = $('.dropdown, .dropup');
             },
             "hide.bs.dropdown": function (e) {
                 // On hide, start out effect
+                    $(this).find('.dropdown-menu').first().stop(true, true).fadeOut();
+
                 var dropdown = dropdownEffectData(this);
                 if (dropdown.effectOut) {
                     e.preventDefault();
