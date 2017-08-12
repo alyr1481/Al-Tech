@@ -9,6 +9,8 @@ var multerS3 = require('multer-s3');
 var email = require("../email/emailSetup");
 var ejs = require("ejs");
 var fs = require("fs");
+var async = require("async");
+var crypto = require("crypto");
 
 // Multer and Amazon S3 Configuration
 var s3 = new AWS.S3();
@@ -140,16 +142,65 @@ router.post("/forgottonpassword",function(req,res){
       req.flash("error","No User With That Email is Registered on Al-Tech");
       return res.redirect("/home");
     }
-    // Change Password Bumf Needs to Go Here!
-    ejs.renderFile("./views/emails/passwordReset.ejs", {user: user}, function (err, data){
-      if (err){
-        return console.log(err);
-      }
-      email.sendPasswordReset(user, data);
-      req.flash("success","Please Follow Instructions in the Email you should Receive");
-      res.redirect("/home");
+    // Creates random Token
+    crypto.randomBytes(20, function(err,buf){
+      var token = buf.toString('hex');
+      // Write token to DB
+      user.resetPasswordToken = token;
+      user.resetPasswordExpires = Date.now() + 7200000; // 1 Hour
+      // Generate Email EJS and Send to user
+      ejs.renderFile("./views/emails/passwordReset.ejs", {user: user}, function (err, data){
+        if (err){
+          return console.log(err);
+        }
+        email.sendPasswordReset(user, data);
+        req.flash("success","Please Follow Instructions in the Email you should Receive");
+        res.redirect("/home");
+      });
+      user.save(function(err){
+        if (err){
+          console.log(err);
+          req.flash("error", "Something Went Horribly Wrong!");
+          res.redirect("/forgottonpassword");
+        }
+      });
     });
   });
+});
+
+router.get("/reset/:token",function(req,res){
+  User.findOne({resetPasswordToken: req.params.token, resetPasswordExpires: {$gt: Date.now()}}, function(err,user){
+    if (err || !user){
+      req.flash("error","Password reset token is invalid or has expired");
+      return res.redirect("/home");
+    }
+    res.render("users/resetPassword", {token: req.params.token})
+  })
+});
+
+router.post("/reset/:token", function(req,res){
+  if (req.body.user.password === req.body.user.passwordConfirm){
+    User.findOne({resetPasswordToken: req.params.token, resetPasswordExpires: {$gt: Date.now()}}, function(err,user){
+      if (err || !user){
+        req.flash("error","Password reset token is invalid or has expired");
+        return res.redirect("/home");
+      }
+      user.setPassword(req.body.user.password, function(err){
+        if (err){
+          console.log(err);
+        }
+        user.resetPasswordExpires=undefined;
+        user.resetPasswordToken=undefined;
+        user.save(function(err){
+          req.flash("success","Password has been Successfully Changed");
+          res.redirect("/home");
+        })
+      });
+    });
+  }else{
+    req.flash("error", "Password's Don't Match!");
+    res.redirect("/home");
+  }
 });
 
 
