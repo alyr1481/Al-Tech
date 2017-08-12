@@ -20,7 +20,7 @@ emailObj.sendServerLive = function sendServerLive(){
      text: 'Hello world ?', // plain text body
      html: '<b>Hello world ?</b>' // html body
  };
- 
+
  transporter.sendMail(mailOptions, (err, info) => {
   if (err) {
    return console.log(err);
@@ -36,7 +36,22 @@ emailObj.sendPasswordReset = function sendPasswordReset(user, renderHTML){
   subject: "Password Reset For Al-Tech",
   html: renderHTML
  };
- 
+
+ transporter.sendMail(mailOptions, (err, info) => {
+  if (err) {
+   return console.log(err);
+  }
+ });
+}
+
+emailObj.sendVerifyAccount = function sendverifyAccount(user, renderHTML){
+ var mailOptions = {
+  from: "'Verify Account' hello@al-tech.co.uk",
+  to: user.email,
+  subject: "Verify Account - Al-Tech",
+  html: renderHTML
+ };
+
  transporter.sendMail(mailOptions, (err, info) => {
   if (err) {
    return console.log(err);

@@ -33,23 +33,48 @@ var upload = multer({
 // Sign Up Logic
 router.post("/register",function(req,res){
   if (req.body.password === req.body.confirmPassword){
-    var newUser = new User({username: req.body.username, email: req.body.email});
-    User.register(newUser,req.body.password, function(err, user){
-      if (err){
-        req.flash("error", err.message);
-        console.log(err);
-        req.flash("error",err);
-        res.redirect("/");
-      }
-      passport.authenticate("local")(req,res, function (){
-        req.flash("success", "Welcome to Al-Tech "+user.username);
-        res.redirect("back");
+    crypto.randomBytes(20, function(err,buf){ // To generate a verification token
+      var token = buf.toString('hex');
+      var newUser = new User({username: req.body.username, email: req.body.email, verificationToken: token});
+      User.register(newUser,req.body.password, function(err, user){
+        if (err){
+          req.flash("error", err.message);
+          console.log(err);
+          req.flash("error",err);
+          res.redirect("/");
+        }
+        // Render & Send Verification email
+        ejs.renderFile("./views/emails/verifyAccount.ejs", {user: user}, function (err, data){
+          if (err){
+            return console.log(err);
+          }
+          email.sendVerifyAccount(user, data);
+          req.flash("success","Please verify by clciking the link sent to "+req.body.email);
+          res.redirect("/home");
+        });
       });
     });
   } else{
     req.flash("error", "Password's Do Not Match!");
     res.redirect("back");
   }
+});
+
+// Verify router
+router.get("/verify/:token",function(req,res){
+  User.findOne({verificationToken: req.params.token}, function(err,user){
+    if (err || !user){
+      req.flash("success","You are already Verified");
+      return res.redirect("/home");
+    }
+    user.verified=true;
+    user.verificationToken=undefined;
+    user.save(function(err){
+      req.flash("success","Account Successfully Verified - Please Log In To Al-Tech");
+      res.redirect("/home");
+    });
+    // Should We Auto Login People?
+  });
 });
 
 // Login Logic

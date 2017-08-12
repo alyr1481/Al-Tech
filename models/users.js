@@ -11,6 +11,7 @@ var UserSchema = new mongoose.Schema({
   createdAt: {type: Date, default: Date.now},
   resetPasswordToken: String,
   resetPasswordExpires: Date,
+  verificationToken: String,
   verified: {type: Boolean, default: false},
   isAdmin: {type: Boolean, default: false},
   isModerator: {type: Boolean, default: false}
