@@ -9,10 +9,8 @@ var multerS3 = require('multer-s3');
 var email = require("../email/emailSetup");
 var ejs = require("ejs");
 var fs = require("fs");
-var async = require("async");
 var crypto = require("crypto");
-var inlineCss = require('inline-css');
-var juice = require('juice2');
+
 
 // Multer and Amazon S3 Configuration
 var s3 = new AWS.S3();
@@ -46,7 +44,7 @@ router.post("/register",function(req,res){
           res.redirect("/");
         }
         // Render & Send Verification email
-        ejs.renderFile("./views/emails/verifyAccount.ejs", {user: user}, function (err, data){
+        ejs.renderFile("./views/emails/verifyAccount.ejs", {user: user, header: req.headers}, function (err, data){
           if (err){
             return console.log(err);
           }
@@ -62,7 +60,7 @@ router.post("/register",function(req,res){
   }
 });
 
-// Verify router
+// Verify route
 router.get("/verify/:token",function(req,res){
   User.findOne({verificationToken: req.params.token}, function(err,user){
     if (err || !user){
@@ -176,7 +174,8 @@ router.post("/forgottonpassword",function(req,res){
       user.resetPasswordToken = token;
       user.resetPasswordExpires = Date.now() + 7200000; // 1 Hour
       // Generate Email EJS and Send to user
-      ejs.renderFile("./views/emails/passwordReset.ejs", {user: user}, function (err, data){
+      console.log(req.headers);
+      ejs.renderFile("./views/emails/passwordReset.ejs", {user: user, header: req.headers}, function (err, data){
         email.sendPasswordReset(user, data);
         req.flash("success","Please Follow Instructions in the Email you should Receive");
         res.redirect("/home");

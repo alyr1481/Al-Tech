@@ -111,7 +111,7 @@ router.get("/emails/uservalidation", middleware.isAdmin,function(req,res){
       req.flash("error", "Issue!");
       return res.redirect("/home");
     }
-    res.render("emails/verifyAccount",{user: user});
+    res.render("emails/verifyAccount",{user: user, header: req.headers});
   });
 });
 
@@ -123,7 +123,7 @@ router.get("/emails/forgot", middleware.isAdmin,function(req,res){
       req.flash("error", "Issue!");
       return res.redirect("/home");
     }
-    res.render("emails/passwordReset",{user: user});
+    res.render("emails/passwordReset",{user: user, header: req.headers});
   });
 });
 module.exports = router;
