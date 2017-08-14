@@ -1,2 +1,13 @@
-<h1>Verify</h1>
-<a href="http://localhost:3000/users/verify/<%=user.verificationToken%>">Verify</a>
+<% include ../partials/emails/header %>
+
+<h1>Dear <%=user.username%>,</h1>
+
+<p>Please click the button below to verify your account. Once verfied you will be able to purchase any of the services and comment on any of the blogs.</p>
+<a style="margin-bottom: 23px;" class="btn btn-default" href="http://localhost:3000/users/verify/<%=user.verificationToken%>">Verify</a>
+<p>Al-Tech offers a variety of services to aid in your everyday tech problems, Al-Tech is a new venture, so if any service you need isn't listed, then please do get in touch with "hello@al-tech.co.uk" so we can come up with a bespoke solution for your need.</p>
+<p>I would also just like to say a big thanks for signing up, the more of you that do, the more the word will spread and the more people we can help, together we are Al-Tech.</p>
+<p>Many Thanks<br>
+<strong>Alex Robinson</strong><br>
+<strong>Creator of Al-Tech</strong></p>
+
+<% include ../partials/emails/footer %>

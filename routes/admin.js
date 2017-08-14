@@ -103,4 +103,27 @@ router.post("/newuser",function(req,res){
   }
 });
 
+// Render Email HTML
+router.get("/emails/uservalidation", middleware.isAdmin,function(req,res){
+  User.findById(req.user._id,function(err,user){
+    if (err || !user){
+      console.log(err+" - Error!");
+      req.flash("error", "Issue!");
+      return res.redirect("/home");
+    }
+    res.render("emails/verifyAccount",{user: user});
+  });
+});
+
+// Render Email HTML
+router.get("/emails/forgot", middleware.isAdmin,function(req,res){
+  User.findById(req.user._id,function(err,user){
+    if (err || !user){
+      console.log(err+" - Error!");
+      req.flash("error", "Issue!");
+      return res.redirect("/home");
+    }
+    res.render("emails/passwordReset",{user: user});
+  });
+});
 module.exports = router;
