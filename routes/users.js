@@ -11,6 +11,8 @@ var ejs = require("ejs");
 var fs = require("fs");
 var async = require("async");
 var crypto = require("crypto");
+var inlineCss = require('inline-css');
+var juice = require('juice2');
 
 // Multer and Amazon S3 Configuration
 var s3 = new AWS.S3();
@@ -175,9 +177,6 @@ router.post("/forgottonpassword",function(req,res){
       user.resetPasswordExpires = Date.now() + 7200000; // 1 Hour
       // Generate Email EJS and Send to user
       ejs.renderFile("./views/emails/passwordReset.ejs", {user: user}, function (err, data){
-        if (err){
-          return console.log(err);
-        }
         email.sendPasswordReset(user, data);
         req.flash("success","Please Follow Instructions in the Email you should Receive");
         res.redirect("/home");
