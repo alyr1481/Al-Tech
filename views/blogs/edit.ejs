@@ -1,19 +1,9 @@
 <% include ../partials/header %>
 <% include ../partials/container_header %>
 
-<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
-    <script>tinymce.init({
-      selector:'textarea',
-      menubar: false,  // removes the menubar
-      height: 500,
-      theme: 'modern',
-      branding: false,
-      plugins: [
-        'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
-        'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-        'save table contextmenu directionality emoticons template paste textcolor'
-      ],
-    });</script>
+
+<script src="/js/ckeditor/ckeditor.js"></script>
+
 
 <form action="/blogs/<%= post._id %>?_method=PUT" method="post" enctype="multipart/form-data">
   <div class="row">
@@ -92,6 +82,9 @@
   <div class="form-group">
     <label for="content">Post Content</label>
     <textarea class="form-control" id="content" class="editable" name=post[content]><%= post.content %></textarea>
+    <script>
+      CKEDITOR.replace( 'content');
+    </script>
   </div>
   <button type="submit" class="btn btn-primary btn-block">Submit</button>
 </form>
