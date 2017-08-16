@@ -163,7 +163,7 @@ body {
 
 form label,
 form input,
-form button {
+form button .valid{
   border: 0;
   margin-bottom: 3px;
   display: block;
@@ -179,7 +179,7 @@ form input {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-form button {
+form button .valid{
   height: 30px;
   line-height: 30px;
   background: #e67e22;
