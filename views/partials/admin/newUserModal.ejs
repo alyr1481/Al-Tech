@@ -13,7 +13,7 @@
       </div>
       <!--Body-->
       <div class="modal-body">
-        <form action="/admin/newuser" method="post" id="newUserForm">
+        <form action="/admin/newuser" method="post" id="newUserForm" name="userSignUp">
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name=username>
@@ -30,19 +30,16 @@
             <label for="confirmPassword">Confirm Password</label>
             <input type="password" class="form-control" id="confirmPassword" name=confirmPassword>
           </div>
-         </form>
-      </div>
-      <!--Footer-->
-      <div class="modal-footer">
-          <a class="btn btn-success btn-block" href="javascript:void()" onclick="document.getElementById('newUserForm').submit();" id="registerButton">
-            <i class="fa fa-plus"></i>
-            <span class="hidden-md-down"> Add User</span>
-          </a>
-      </div>
+        </div>
+        <!--Footer-->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success btn-block" id="registerButton"><i class="fa fa-plus"></i> Submit User</button>
+        </div>
+      </form>
     </div>
     <!--/.Content-->
   </div>
 </div>
-<script type="text/javascript" src="/js/custom/fieldTester.js"></script>
+<script type="text/javascript" src="/js/custom/userFormValidator.js"></script>
 
 <!-- Modal -->

@@ -16,7 +16,7 @@
       </div>
       <!--Body-->
       <div class="modal-body">
-        <form action="/users/register" method="POST" id="register-Form">
+        <form action="/users/register" method="POST" id="register-Form" name="registerForm">
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name=username>
@@ -36,16 +36,14 @@
       </div>
       <!--Footer-->
       <div class="modal-footer">
-          <a class="btn btn-default btn-block" href="javascript:void()" onclick="document.getElementById('register-Form').submit();">
-            <i class="fa fa-user-plus"></i>
-            <span class="hidden-md-down"> Register</span>
-          </a>
+          <button class="btn btn-default btn-block"><i class="fa fa-user-plus"></i> Register</button>
         </form>
       </div>
     </div>
     <!--/.Content-->
   </div>
 </div>
+<script type="text/javascript" src="/js/custom/userFormValidator.js"></script>
 <!-- Modal -->
 
 <!-- Modal -->
