@@ -26,6 +26,29 @@ var upload = multer({
     })
 });
 
+// =================
+// Validation Routes
+// =================
+
+// Use for Form Validation to chekc if available
+router.post("/isUsernameAvailable", function(req,res){
+ User.findOne({username: req.body.username}, function(err,user){
+  if (user || err){
+   return res.send("false");
+  }
+  return res.send("true");
+ });
+});
+
+router.post("/isEmailUsed", function(req,res){
+ User.findOne({email: req.body.email}, function(err,user){
+  if (user || err){
+   return res.send("false");
+  }
+  return res.send("true");
+ });
+});
+
 // ============
 // Auth Routes
 // ============

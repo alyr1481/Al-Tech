@@ -3,6 +3,7 @@ var router  = express.Router({mergeParams: true});
 var Post = require("../models/posts");
 var email = require("../email/emailSetup");
 var ejs = require("ejs");
+var User = require("../models/users");
 
 // Render the Landing Page
 router.get("/",function(req,res){
@@ -37,6 +38,8 @@ router.post("/contact", function(req,res){
   return res.redirect("/home");
  }); 
 });
+
+
 
 
 module.exports = router;
