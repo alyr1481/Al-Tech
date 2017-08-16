@@ -29,6 +29,7 @@ emailObj.sendServerLive = function sendServerLive(){
  });
 };
 
+// Password Reset Email
 emailObj.sendPasswordReset = function sendPasswordReset(user, renderHTML){
  var mailOptions = {
   from: "'Password Reset' hello@al-tech.co.uk",
@@ -44,11 +45,28 @@ emailObj.sendPasswordReset = function sendPasswordReset(user, renderHTML){
  });
 }
 
+// Account Verify Setup
 emailObj.sendVerifyAccount = function sendverifyAccount(user, renderHTML){
  var mailOptions = {
   from: "'Verify Account' hello@al-tech.co.uk",
   to: user.email,
   subject: "Verify Account - Al-Tech",
+  html: renderHTML
+ };
+
+ transporter.sendMail(mailOptions, (err, info) => {
+  if (err) {
+   return console.log(err);
+  }
+ });
+}
+
+// Contact Us Setup
+emailObj.sendContactUs = function sendContactUs(contactForm, renderHTML){
+ var mailOptions = {
+  from: "Al-Tech Contact Form contact@al-tech.co.uk",
+  to: "alyr1481@gmail.com",
+  subject: "Al-Tech - Contact Form - " + contactForm.subject,
   html: renderHTML
  };
 

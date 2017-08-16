@@ -1,0 +1,44 @@
+<% include ../partials/header_contactUs %>
+
+<div  style="margin-top:0px;">
+ <div class="container">
+  <div class="row" style="height: 100%">
+   <div class="col-md-9">
+   </div>
+   <div class="col-md-3">
+    <div id="ContactBox" class="card blogs-index-card" style="width:400px; margin-bottom: 20px; padding-top:10px; padding-bottom:10px;">
+     <div class="container">
+      <form action="/contact" method="POST">
+       <p class="h5 text-center mb-4">Contact us</p>
+       <div class="md-form">
+        <i class="fa fa-user prefix grey-text"></i>
+        <input type="text" id="name" class="form-control" name="contact[name]">
+        <label for="name">Your name</label>
+       </div>
+       <div class="md-form">
+        <i class="fa fa-envelope prefix grey-text"></i>
+        <input type="text" id="email" class="form-control" name="contact[email]">
+        <label for="email">Your email</label>
+       </div>
+       <div class="md-form">
+        <i class="fa fa-tag prefix grey-text"></i>
+        <input type="text" id="subject" class="form-control" name="contact[subject]">
+        <label for="subject">Subject</label>
+       </div>
+       <div class="md-form">
+        <i class="fa fa-pencil prefix grey-text"></i>
+        <textarea type="text" id="message" class="md-textarea" style="height: 100px" name="contact[message]"></textarea>
+        <label for="message">Your message</label>
+       </div>
+       <div class="text-center">
+        <button class="btn btn-unique">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+
+<% include ../partials/footer %>

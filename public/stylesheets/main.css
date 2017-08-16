@@ -1,11 +1,11 @@
 
 body {
     padding-top: 100px;
+    margin: 0;
+    padding-bottom: 0;
 }
 
-html {
-  overflow:   scroll;
-}
+
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
@@ -153,4 +153,9 @@ html {
   font-size: 12px; 
   text-align: center; 
   padding-bottom: 15px;
+}
+
+#ContactBox {
+    display: flex;
+    align-items: center;
 }

@@ -1,0 +1,10 @@
+<% include ../partials/emails/header %>
+
+<h1 style="font-family: arial;">You have had a message from: <%=contact.email%></h1>
+
+<p style="font-family: arial;"><%=contact.message%></p>
+<p style="font-family: arial;">Sent From<br>
+<strong><%=contact.name%> - <%=contact.email%></strong><br>
+
+
+<% include ../partials/emails/footer %>
