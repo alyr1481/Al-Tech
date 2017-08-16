@@ -36,7 +36,11 @@ router.post("/contact", function(req,res){
   email.sendContactUs(req.body.contact,html);
   req.flash("success","Thanks for your message - somebody will be in touch shortly")
   return res.redirect("/home");
- }); 
+ });
+});
+
+router.get("/about", function(req,res){
+  res.render("index/about");
 });
 
 
