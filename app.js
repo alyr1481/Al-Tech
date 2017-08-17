@@ -1,6 +1,7 @@
 require('dotenv').config();
 
-var express = require("express"),
+var compression = require('compression'),
+    express = require("express"),
     app = express(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
@@ -31,6 +32,7 @@ mongoose.connect(process.env.MONGO_REMOTE);
 }
 
 // Express Settings
+app.use(compression());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
