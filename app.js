@@ -3,6 +3,7 @@ require('dotenv').config();
 var compression = require('compression'),
     express = require("express"),
     app = express(),
+    minifyHTML = require('express-minify-html'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     expressSanitizer = require("express-sanitizer"),
@@ -39,6 +40,20 @@ app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
 app.use(expressSanitizer());
 app.use(flash());
+app.use(minifyHTML({
+    override:      true,
+    exception_url: false,
+    htmlMinifier: {
+        removeComments:            true,
+        collapseWhitespace:        true,
+        collapseBooleanAttributes: true,
+        removeAttributeQuotes:     true,
+        removeEmptyAttributes:     true,
+        minifyJS:                  true
+    }
+}));
+var cacheTime = 86400000;     // 1 day
+app.use(express.static(__dirname + '/public',{ maxAge: cacheTime }));
 
 // Passport Config
 app.locals.moment = require('moment');
