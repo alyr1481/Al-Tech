@@ -101,7 +101,7 @@ router.get("/verify/:token",function(req,res){
 });
 
 // Login Logic
-router.post("/login", passport.authenticate("local",
+router.post("/login", middleware.isUserVerified,passport.authenticate("local",
   {
     successRedirect: "back",
     failureRedirect: "/"
