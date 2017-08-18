@@ -113,8 +113,8 @@ body {
 }
 
 .recentPostCard{
- padding-top:10px;  
- padding-bottom:10px;  
+ padding-top:10px;
+ padding-bottom:10px;
 }
 
 .removeAColor{
@@ -123,6 +123,10 @@ body {
 
 .homeRecentPostPadding{
   padding-bottom:20px;
+}
+.fileUploadButton{
+  width: 100%;
+  height: 100%;
 }
 
 #scrollable-content {
@@ -150,8 +154,8 @@ body {
 }
 
 #forgottonPassword{
-  font-size: 12px; 
-  text-align: center; 
+  font-size: 12px;
+  text-align: center;
   padding-bottom: 15px;
 }
 
