@@ -234,6 +234,7 @@ router.post("/reset/:token", function(req,res){
       user.setPassword(req.body.user.password, function(err){
         if (err){
           console.log(err);
+          return res.redirect("/home");
         }
         user.resetPasswordExpires=undefined;
         user.resetPasswordToken=undefined;
