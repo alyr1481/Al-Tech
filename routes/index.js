@@ -33,7 +33,11 @@ router.post("/contact", function(req,res){
    req.flash("error","An Error Occurred");
    return res.redirect("/contact");
   }
-  email.sendContactUs(req.body.contact,html);
+  email.sendContactUs(err,req.body.contact,html);
+  if (err){
+    req.flash("error","Something Went Wrong");
+    return res.redirect("/home");
+  }
   req.flash("success","Thanks for your message - somebody will be in touch shortly")
   return res.redirect("/home");
  });

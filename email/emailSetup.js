@@ -1,7 +1,7 @@
 var nodemailer = require('nodemailer');
 
 var emailObj={};
-
+var err;
 // Transporter Setup for the service used. (Gmail).
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -62,7 +62,7 @@ emailObj.sendVerifyAccount = function sendverifyAccount(user, renderHTML){
 }
 
 // Contact Us Setup
-emailObj.sendContactUs = function sendContactUs(contactForm, renderHTML){
+emailObj.sendContactUs = function sendContactUs(err,contactForm, renderHTML){
  var mailOptions = {
   from: "Al-Tech Contact Form contact@al-tech.co.uk",
   to: "alyr1481@gmail.com",
@@ -75,6 +75,7 @@ emailObj.sendContactUs = function sendContactUs(contactForm, renderHTML){
    return console.log(err);
   }
  });
+
 }
 
 
