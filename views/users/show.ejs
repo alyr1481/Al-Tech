@@ -10,7 +10,9 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <a class="btn btn-primary btn-block" style="width:350px;" data-toggle="modal" data-target="#changeAvatar">Upload New Avatar</a>
+        <% if (currentUser.username == user.username){ %>
+          <a class="btn btn-primary btn-block" style="width:350px;" data-toggle="modal" data-target="#changeAvatar">Upload New Avatar</a>
+        <% } %>
       </div>
     </div>
   </div>
@@ -28,11 +30,14 @@
             </p>
           </div>
         </div>
-        <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#editBio">Edit <%=user.username%>'s Bio</a>
+        <% if (currentUser.username == user.username){ %>
+          <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#editBio">Edit <%=user.username%>'s Bio</a>
+        <% } %>
       </div>
     </div>
   </div>
 </div>
+<% if (currentUser.username == user.username){ %>
 <div class="row" style="margin-top:20px;">
   <div class="col-md-6" style="padding-right:5px; padding-left:0px;">
     <a class="btn btn-warning btn-block" data-toggle="modal" data-target="#changePassword">Change Password</a>
@@ -41,6 +46,7 @@
     <a class="btn btn-danger btn-block" style="width: 100%;">Delete Account</a>
   </div>
 </div>
+<% } %>
 
 
 <% include ../partials/users/changeAvatarModal %>

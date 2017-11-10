@@ -116,7 +116,7 @@ router.get("/logout",function(req,res){
 });
 
 // User Profile Page
-router.get("/profile/:id", middleware.isUserUser, function(req,res){
+router.get("/profile/:id", middleware.isLoggedIn, function(req,res){
   User.findById(req.params.id, function(err,foundUser){
     if (err){
       res.render('errorPages/blogNotFound');
@@ -249,6 +249,19 @@ router.post("/reset/:token", function(req,res){
     res.redirect("/home");
   }
 });
+
+// // Link to other users Bio
+// router.get("/profile/:username", middleware.isLoggedIn,function(req, res){
+//   console.log(req.username);
+//   User.findOne(req.username, 'username',function(err,user){
+//     if (err){
+//       console.log("Can't find user!!");
+//       req.flash("error","No User found with that username");
+//       res.redirect("back");
+//     }
+//     res.redirect("/users/profile/"+user.id);
+//   });
+// });
 
 
 // Error Catchall Page

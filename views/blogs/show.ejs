@@ -96,7 +96,7 @@
     <!--/.Image column-->
     <!--Content column-->
     <div class="col-sm-10 col-12">
-      <a><h3 class="user-name"><%=comment.author.username%></h3></a>
+      <a href="/users/profile/<%=comment.author.id%>"><h3 class="user-name"><%=comment.author.username%></h3></a>
       <div class="card-data">
         <ul>
         <li class="comment-date"><i class="fa fa-clock-o"></i> 05/10/2015</li>
@@ -117,7 +117,7 @@
       <%if (currentUser){%>
           <textarea name=comment[content] type="text" style="width:100%" class="md-textarea" placeholder="Enter A Comment - Remember There Is A Human On The Other Keyboard"></textarea>
           <a class="btn btn-default btn-block" style="margin-top: 20px;" href="javascript:void()" onclick="document.getElementById('submitComment').submit();"><i class="fa fa-comments-o" aria-hidden="true"></i> Submit Comment</a>
-      <%}else{%>  
+      <%}else{%>
           <textarea name=comment[content] type="text" style="width:100%" class="md-textarea" disabled>Please Log in to Post a Comment</textarea>
           <a class="btn btn-default btn-block disabled" style="margin-top: 20px;" disabled><i class="fa fa-comments-o" aria-hidden="true"></i> Submit Comment</a>
       <%}%>
