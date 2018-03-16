@@ -5,7 +5,11 @@ var aws = require('aws-sdk');
 var emailObj={};
 var err;
 
-aws.config.loadFromPath('aws_config.json')
+//aws.config.loadFromPath('aws_config.json')
+
+var config = new aws.Config({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID, secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY, region: process.env.AWS_REGION
+  });
 
 var transporter = nodemailer.createTransport({
     SES: new aws.SES({

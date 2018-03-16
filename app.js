@@ -29,11 +29,8 @@ mongoose.Promise = global.Promise;
 if (process.env.LOCAL_OR_REMOTE==1){
  mongoose.connect(process.env.MONGO_LOCAL);
  console.log("Connection to MongoDB is Live!");
-} else if (process.env.LOCAL_OR_REMOTE==0){
+} else {
   mongoose.connect(process.env.MONGO_REMOTE);
-  console.log("Connection to MongoDB is Live!");
-} else if (process.env.LOCAL_OR_REMOTE==2){
-  mongoose.connect(process.env.MONGO_WORK);
   console.log("Connection to MongoDB is Live!");
 }
 
