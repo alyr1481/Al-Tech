@@ -1,6 +1,9 @@
 {
   "name": "al-tech",
   "version": "0.0.1",
+  "engines": {
+    "node": "8.9.4"
+  },
   "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
   "main": "app.js",
   "author": "Alex Robinson <alyr1481@gmail.com>",
