@@ -3,3 +3,4 @@ node_modules/
 s3_config.json
 .gitignore
 .DS_Store
+aws_config.json

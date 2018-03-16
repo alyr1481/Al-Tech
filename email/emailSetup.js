@@ -1,15 +1,18 @@
 var nodemailer = require('nodemailer');
+var aws = require('aws-sdk');
+
 
 var emailObj={};
 var err;
-// Transporter Setup for the service used. (Gmail).
+
+aws.config.loadFromPath('aws_config.json')
+
 var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: process.env.PERSONAL_GMAIL_ADDRESS,
-        pass: process.env.PERSONAL_GMAIL_PASSWORD
-    }
+    SES: new aws.SES({
+        apiVersion: '2010-12-01'
+    })
 });
+
 
 // Send Server is Live email
 emailObj.sendServerLive = function sendServerLive(){
@@ -32,7 +35,7 @@ emailObj.sendServerLive = function sendServerLive(){
 // Password Reset Email
 emailObj.sendPasswordReset = function sendPasswordReset(user, renderHTML){
  var mailOptions = {
-  from: "'Password Reset' hello@al-tech.co.uk",
+  from: "'Password Reset' no-reply@al-tech.co.uk",
   to: user.email,
   subject: "Password Reset For Al-Tech",
   html: renderHTML
@@ -48,7 +51,7 @@ emailObj.sendPasswordReset = function sendPasswordReset(user, renderHTML){
 // Account Verify Setup
 emailObj.sendVerifyAccount = function sendverifyAccount(user, renderHTML){
  var mailOptions = {
-  from: "'Verify Account' hello@al-tech.co.uk",
+  from: "'Verify Account' no-reply@al-tech.co.uk",
   to: user.email,
   subject: "Verify Account - Al-Tech",
   html: renderHTML
@@ -58,6 +61,7 @@ emailObj.sendVerifyAccount = function sendverifyAccount(user, renderHTML){
   if (err) {
    return console.log(err);
   }
+  console.log("New User Email Sent");
  });
 }
 

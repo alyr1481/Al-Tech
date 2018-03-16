@@ -28,8 +28,13 @@ var blogRoutes = require('./routes/blogs'),
 mongoose.Promise = global.Promise;
 if (process.env.LOCAL_OR_REMOTE==1){
  mongoose.connect(process.env.MONGO_LOCAL);
-} else{
-mongoose.connect(process.env.MONGO_REMOTE);
+ console.log("Connection to MongoDB is Live!");
+} else if (process.env.LOCAL_OR_REMOTE==0){
+  mongoose.connect(process.env.MONGO_REMOTE);
+  console.log("Connection to MongoDB is Live!");
+} else if (process.env.LOCAL_OR_REMOTE==2){
+  mongoose.connect(process.env.MONGO_WORK);
+  console.log("Connection to MongoDB is Live!");
 }
 
 // Express Settings
@@ -96,10 +101,15 @@ app.get('*', function(req, res) {
 
 if (process.env.LOCAL_OR_REMOTE==1){
   app.listen(3000,function(){
-    console.log("SERVER HAS STARTED!");
+    console.log("LOCAL SERVER HAS STARTED!");
   });
-} else{
+} else if (process.env.LOCAL_OR_REMOTE==0){
   app.listen(process.env.PORT, process.env.IP,function(){
-    console.log("SERVER HAS STARTED!");
+    console.log("REMOTE SERVER HAS STARTED!");
+  });
+}
+else if (process.env.LOCAL_OR_REMOTE==2){
+  app.listen(3000,function(){
+    console.log("LOCAL SERVER HAS STARTED!");
   });
 }
