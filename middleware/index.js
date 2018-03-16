@@ -84,7 +84,7 @@ middlewareObj.isUserVerified = function(req,res,next){
     if (user.verified){
       return next();
     }
-    req.flash("error","Your account is not verified! - Resending Verification Email to " +user.email);
+    req.flash("error","Your account is not verified! - Resending Verification Email To Your Registered Email Address");
     crypto.randomBytes(20, function(err,buf){ // To generate a verification token
       var token = buf.toString('hex');
       user.verificationToken = token;
