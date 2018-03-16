@@ -1,22 +1,17 @@
 var nodemailer = require('nodemailer');
 var aws = require('aws-sdk');
+var ses = require('nodemailer-ses-transport');
 
 
 var emailObj={};
 var err;
 
-//aws.config.loadFromPath('aws_config.json')
-
-var config = new aws.Config({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID, secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY, region: process.env.AWS_REGION
-  });
-
-var transporter = nodemailer.createTransport({
-    SES: new aws.SES({
-        apiVersion: '2010-12-01'
-    })
-});
-
+// Connect to AWS service and check credentials
+var transporter = nodemailer.createTransport(ses({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_SES_REGION
+}));
 
 // Send Server is Live email
 emailObj.sendServerLive = function sendServerLive(){
