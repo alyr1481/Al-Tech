@@ -23,12 +23,7 @@ emailObj.sendServerLive = function sendServerLive(){
      html: '<b>Hello world ?</b>' // html body
  };
 
- transporter.sendMail(mailOptions, (err, info) => {
-  if (err) {
-   return console.log(err);
-  }
-  console.log("Sending Server Start Email");
- });
+sendEmail(mailOptions);
 };
 
 // Password Reset Email
@@ -40,11 +35,7 @@ emailObj.sendPasswordReset = function sendPasswordReset(user, renderHTML){
   html: renderHTML
  };
 
- transporter.sendMail(mailOptions, (err, info) => {
-  if (err) {
-   return console.log(err);
-  }
- });
+sendEmail(mailOptions);
 }
 
 // Account Verify Setup
@@ -56,12 +47,7 @@ emailObj.sendVerifyAccount = function sendverifyAccount(user, renderHTML){
   html: renderHTML
  };
 
- transporter.sendMail(mailOptions, (err, info) => {
-  if (err) {
-   return console.log(err);
-  }
-  console.log("New User Email Sent");
- });
+ sendEmail(mailOptions);
 }
 
 // Contact Us Setup
@@ -73,13 +59,17 @@ emailObj.sendContactUs = function sendContactUs(err,contactForm, renderHTML){
   html: renderHTML
  };
 
- transporter.sendMail(mailOptions, (err, info) => {
-  if (err) {
-   return console.log(err);
-  }
- });
-
+sendEmail(mailOptions);
 }
 
+
+// Function to send Email
+function sendEmail(mailOptions){
+    transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+            return console.log(err);
+        }
+    });
+}
 
 module.exports = emailObj;
