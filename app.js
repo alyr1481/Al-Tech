@@ -103,13 +103,9 @@ if (process.env.LOCAL_OR_REMOTE==1){
   app.listen(3000,function(){
     console.log("LOCAL SERVER HAS STARTED!");
   });
-} else if (process.env.LOCAL_OR_REMOTE==0){
+} else {
   app.listen(process.env.PORT, process.env.IP,function(){
     console.log("REMOTE SERVER HAS STARTED!");
   });
 }
-else if (process.env.LOCAL_OR_REMOTE==2){
-  app.listen(3000,function(){
-    console.log("LOCAL SERVER HAS STARTED!");
-  });
-}
+
