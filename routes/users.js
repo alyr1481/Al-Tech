@@ -72,7 +72,7 @@ router.post("/register",function(req,res){
             return console.log(err);
           }
           email.sendVerifyAccount(user, data);
-          req.flash("success","Please verify by clciking the link sent to "+req.body.email);
+          req.flash("success","Please Verify By Clciking the Link Sent to: "+user.email);
           res.redirect("/home");
         });
       });

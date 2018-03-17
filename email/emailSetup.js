@@ -26,6 +26,17 @@ emailObj.sendServerLive = function sendServerLive(){
 sendEmail(mailOptions);
 };
 
+// Send Test Email
+emailObj.sendTestEmail = function sendTestEmail(recipient,from,subject,content){
+    var mailOptions = {
+        from: from,
+        to: recipient,
+        subject: subject,
+        html: content
+    };
+    sendEmail(mailOptions)
+}
+
 // Password Reset Email
 emailObj.sendPasswordReset = function sendPasswordReset(user, renderHTML){
  var mailOptions = {

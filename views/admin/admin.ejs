@@ -107,22 +107,30 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col md-6">
+    <div class="col md-4">
       <a class="btn btn-default btn-block" href="/admin/emails/uservalidation" target="_blank">
         <i class="fa fa-envelope"></i>
         <span class="hidden-md-down "> Show User Validation Email</span>
       </a> 
     </div>
-    <div class="col md-6">
+    <div class="col md-4">
       <a class="btn btn-default btn-block" href="/admin/emails/forgot" target="_blank">
         <i class="fa fa-envelope"></i>
         <span class="hidden-md-down "> Show Forgot Password Email</span>
       </a> 
     </div>
+    <div class="col md-4">
+      <a class="btn btn-default btn-block" data-toggle="modal" data-target="#testEmailModal">
+        <i class="fa fa-envelope"></i>
+        <span class="hidden-md-down "> Send Test Email (SES)</span>
+      </a> 
+    </div>
   </div>
 </div>
+
 
 <% include ../partials/admin/editPostTypeModal %>
 <% include ../partials/admin/newPostTypeModal %>
 <% include ../partials/admin/newUserModal %>
+<% include ../partials/admin/testEmailModal %>
 <% include ../partials/footer %>

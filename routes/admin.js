@@ -4,6 +4,7 @@ var PostType = require("../models/postTypes");
 var User = require("../models/users");
 var middleware = require("../middleware");
 var passport = require('passport');
+var email = require("../email/emailSetup")
 
 // Root Admin Page
 router.get("/", middleware.isAdmin,function(req,res){
@@ -102,6 +103,13 @@ router.post("/newuser",function(req,res){
     res.redirect("/admin");
   }
 });
+
+// Send Test Email
+router.post("/testemail", middleware.isAdmin, function(req,res){
+  email.sendTestEmail(req.body.recipient,req.body.from,req.body.subject,req.body.content);
+  req.flash("success","Email Sent to: "+req.body.recipient);
+  res.redirect("/admin");
+})
 
 // Render Email HTML
 router.get("/emails/uservalidation", middleware.isAdmin,function(req,res){

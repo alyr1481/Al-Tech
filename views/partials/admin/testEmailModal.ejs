@@ -1,0 +1,45 @@
+<!-- Modal -->
+<div class="modal fade" id="testEmailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+  <div class="modal-dialog modal-lg" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Send Test Email</h4>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <form action="/admin/testemail" method="post" id="testEmailForm" name="testEmailrForm">
+          <div class="form-group">
+            <label for="recipient">Recipient</label>
+            <input type="text" class="form-control" id="recipient" name=recipient>
+          </div>
+          <div class="form-group">
+            <label for="from">From</label>
+            <input type="text" class="form-control" id="from" name=from>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" class="form-control" id="subject" name=subject>
+          </div>          
+          <div class="form-group">
+            <label for="password">Content</label>
+            <textarea type="text" style="width:100%" class="md-textarea" name="content" id="content" cols="30" rows="30" placeholder="Body Content Goes Here - Can be HTML or Raw Text"></textarea>
+          </div>
+        </div>
+        <!--Footer-->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success btn-block" id="registerButton"><i class="fa fa-envelope"></i> Send Email</button>
+        </div>
+      </form>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<script type="text/javascript" src="/js/custom/userFormValidator.js"></script>
+
+<!-- Modal -->
