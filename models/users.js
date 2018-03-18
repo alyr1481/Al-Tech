@@ -1,6 +1,7 @@
 var mongoose              = require("mongoose"),
     passportLocalMongoose = require("passport-local-mongoose"),
-    bcrypt = require("bcrypt-nodejs");
+    bcrypt = require("bcrypt-nodejs"),
+    deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 var UserSchema = new mongoose.Schema({
   username: { type: String, unique: true, required:true },
@@ -18,5 +19,6 @@ var UserSchema = new mongoose.Schema({
 });
 
 UserSchema.plugin(passportLocalMongoose);
+UserSchema.plugin(deepPopulate);
 
 module.exports = mongoose.model("User",UserSchema);

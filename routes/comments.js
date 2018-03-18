@@ -17,9 +17,10 @@ router.post("/", middleware.isLoggedIn,function(req,res){
           console.log(err);
         } else{
           // add username and ID to comment
-          comment.author.id = req.user._id;
-          comment.author.username = req.user.username;
-          comment.author.avatar = req.user.avatar;
+          // comment.author.id = req.user._id;
+          comment.username = req.user.username;
+          comment.avatar = req.user.avatar;
+          comment.users = req.user._id;
           // save comment
           comment.save();
           post.comments.push(comment);

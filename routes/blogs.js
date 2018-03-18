@@ -4,11 +4,14 @@ var express = require("express");
 var router  = express.Router({mergeParams: true});
 var Post = require("../models/posts");
 var PostType = require("../models/postTypes");
+var Comment = require("../models/comments");
 var middleware = require("../middleware");
 var fs = require("fs");
 var AWS = require('aws-sdk');
 var multer = require("multer");
 var multerS3 = require('multer-s3');
+var mongoose = require("mongoose");
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 // Multer and Amazon S3 Configuration
 var s3 = new AWS.S3();
