@@ -4,6 +4,7 @@
   "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
   "main": "app.js",
   "author": "Alex Robinson <alyr1481@gmail.com>",
+  "engines" : { "node" : ">=8.0" },
   "dependencies": {
     "async": "^0.2.10",
     "aws-sdk": "^2.210.0",
