@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 var commentSchema = mongoose.Schema({
   content: String,
@@ -13,6 +12,5 @@ var commentSchema = mongoose.Schema({
     username: String
 });
 
-commentSchema.plugin(deepPopulate);
 
 module.exports = mongoose.model("Comment",commentSchema);
