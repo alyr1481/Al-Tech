@@ -4,6 +4,7 @@ var Post = require("../models/posts");
 var email = require("../email/emailSetup");
 var ejs = require("ejs");
 var User = require("../models/users");
+var middleware = require("../middleware");
 
 // Render the Landing Page
 router.get("/",function(req,res){
@@ -27,7 +28,7 @@ router.get("/contact",function(req,res){
 });
 
 // Contact us Logic Route
-router.post("/contact", function(req,res){
+router.post("/contact",  middleware.isLoggedIn,function(req,res){
  ejs.renderFile("./views/emails/contactUs.ejs", {contact: req.body.contact, header: req.headers}, function (err, html){
   if (err){
    req.flash("error","An Error Occurred");
